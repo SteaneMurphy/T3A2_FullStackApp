@@ -20,7 +20,6 @@ TravelMate Itinerary Builder is designed to assist TravelMate, a boutique travel
 - **Create New Itinerary Page**: Allows users to create new travel itineraries.
 - **View Single Itinerary Page**: Enables users to view details of a single itinerary.
 
-
 ### ${\textsf{\color{lightblue}TARGET AUDIENCE}}$
 
 - **Travel Agents**: Professionals who need a tool to create and manage travel itineraries for clients quickly and efficiently.
