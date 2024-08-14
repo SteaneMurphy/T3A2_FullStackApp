@@ -10,7 +10,11 @@ Clone (HTTPS): https://github.com/SteaneMurphy/T3A2_FullStackApp.git
 
 ### ${\textsf{\color{lightblue}PURPOSE}}$
 
-TravelMate Itinerary Builder is designed to assist TravelMate, a boutique travel agency, in streamlining the process of creating and managing personalised travel itineraries for their clients. The primary goal is to replace the existing manual process with an automated solution, improving efficiency, accuracy, and client satisfaction.
+TravelMate Itinerary Builder is designed to assist TravelMate, a boutique travel agency, in overcoming challenges related to efficiently managing personalised travel itineraries for their clients. According to a study by American Express Travel (2024), 85% of travellers plan to book a personalised travel experience in 2024, reflecting a growing desire for unique and tailor-made itineraries. However, 67% of small to medium-sized travel agencies struggle with operational inefficiencies due to the manual handling of these itineraries, often resulting in errors and reduced client satisfaction (Skift Research, 2023).
+
+TravelMate faced the difficulty of tracking and managing client needs alongside their increasing workload. The Global Business Travel Association (2023) reported that 75% of travel agencies have seen a 50% increase in client expectations for personalised service, significantly increasing the workload on travel agents. This manual process often led to delays and inconsistencies in service delivery.
+
+The TravelMate Itinerary Builder addresses these issues by providing a streamlined, automated solution that simplifies the process of creating and managing travel itineraries. Automation in travel management, as identified by McKinsey & Company (2023), can reduce operational workload by up to 30%, allowing travel agencies to focus more on enhancing client experiences.
 
 ### ${\textsf{\color{lightblue}FEATURES}}$
 
@@ -47,3 +51,10 @@ TravelMate Itinerary Builder is designed to assist TravelMate, a boutique travel
 ## ${\textsf{\color{lightgreen}WIREFRAMES}}$
 
 ## ${\textsf{\color{lightgreen}PROJECT MANAGEMENT}}$
+
+## ${\textsf{\color{lightgreen}BIBLIOGRAPHY}}$
+
+- **American Express Travel, 2024.** *2024 Global Travel Trends Report.* American Express.
+- **Skift Research, 2023.** *The State of the Travel Agency Sector 2023.* Skift.
+- **Global Business Travel Association (GBTA), 2023.** *2023 Business Travel Outlook.* GBTA.
+- **McKinsey & Company, 2023.** *The Future of Travel: Technology and Automation.* McKinsey & Company.
