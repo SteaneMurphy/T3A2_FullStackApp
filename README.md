@@ -1,6 +1,6 @@
 # ${\textsf{\color{lightgreen}TRAVELMATE APP}}$
 
-![image](/resources/Banner.jpg)
+![image](./docs/Banner.jpg)
 
 [Link To GitHub Repository](https://github.com/SteaneMurphy/T3A2_FullStackApp)
 
