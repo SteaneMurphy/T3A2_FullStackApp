@@ -48,6 +48,21 @@ The TravelMate Itinerary Builder addresses these issues by providing a streamlin
 
 ## ${\textsf{\color{lightgreen}USER STORIES}}$
 
+**Account Creation and Management**
+A frequent traveler who likes to keep their plans organised wants to create an account so they can securely store and access their travel itineraries across different devices. Initially, the focus was on simply creating an account, but the revised version emphasizes the need for secure access to itineraries on multiple devices.
+
+**Itinerary Creation**
+A busy professional with limited time for travel planning wants to quickly create a new itinerary by entering key destinations and dates, allowing them to efficiently organize their trip without missing important details. Initially, the idea was centered around simple itinerary creation, but the revision now emphasizes efficiency and the importance of capturing key travel details without hassle.
+
+**Itinerary Editing**
+A spontaneous traveler who often changes plans wants to easily edit their existing itinerary to update their travel plans on the go as new opportunities arise. Initially, the story was about basic editing, but the revision now focuses on the need for flexibility and the ability to adapt plans as new opportunities emerge.
+
+**Data Security**
+A privacy-conscious traveler wants their personal information and itineraries to be securely stored and encrypted so they can trust the app with sensitive travel details and feel safe using it. Initially, the focus was on basic security, but the refined story now highlights the importance of encryption and trust, particularly for users concerned about privacy.
+
+**User Interface & Experience**
+A user who values simplicity and aesthetics wants the app to have a clean and intuitive user interface so they can navigate it easily and enjoy using it to plan their trips. Initially, the focus was on functionality, but the revision now emphasizes the aesthetic and user-friendly aspects of the interface, aligning with the persona’s values.
+
 ## ${\textsf{\color{lightgreen}WIREFRAMES}}$
 
 ## ${\textsf{\color{lightgreen}PROJECT MANAGEMENT}}$
