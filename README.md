@@ -65,9 +65,75 @@ A user who values simplicity and aesthetics wants the app to have a clean and in
 
 ## ${\textsf{\color{lightgreen}WIREFRAMES}}$
 
+### ${\textsf{\color{lightblue}DESKTOP (FROM 1024PX)}}$
+
+##### ${\textsf{\color{pink}LOGIN}}$
+
+![image](./docs/Wireframes/Desktop/Login.png)
+
+##### ${\textsf{\color{pink}REGISTER ACCOUNT}}$
+
+![image](./docs/Wireframes/Desktop/Register.png)
+
+##### ${\textsf{\color{pink}ALL ITINERARIES}}$
+
+![image](./docs/Wireframes/Desktop/All%20Itineraries.png)
+
+##### ${\textsf{\color{pink}CREATE ITINERARY}}$
+
+![image](./docs/Wireframes/Desktop/Itinerary%20Create.png)
+
+##### ${\textsf{\color{pink}VIEW ITINERARY (SINGLE)}}$
+
+![image](./docs/Wireframes/Desktop/Itinerary%20View%20(Single).png)
+
+### ${\textsf{\color{lightblue}TABLET (FROM 769PX)}}$
+
+##### ${\textsf{\color{pink}LOGIN}}$
+
+![image](./docs/Wireframes/Tablet/Login%20(Tablet).png)
+
+##### ${\textsf{\color{pink}REGISTER ACCOUNT}}$
+
+![image](./docs/Wireframes/Tablet/Register%20(Tablet).png)
+
+##### ${\textsf{\color{pink}ALL ITINERARIES}}$
+
+![image](./docs/Wireframes/Tablet/All%20Itineraries%20(Tablet).png)
+
+##### ${\textsf{\color{pink}CREATE ITINERARY}}$
+
+![image](./docs/Wireframes/Tablet/Itinerary%20Create%20(Tablet).png)
+
+##### ${\textsf{\color{pink}VIEW ITINERARY (SINGLE)}}$
+
+![image](./docs/Wireframes/Tablet/Itinerary%20View%20(Single)%20(Tablet).png)
+
+### ${\textsf{\color{lightblue}MOBILE (UPTO 768PX)}}$
+
+##### ${\textsf{\color{pink}LOGIN}}$
+
+![image](./docs/Wireframes/Mobile/Login%20(Mobile).png)
+
+##### ${\textsf{\color{pink}REGISTER ACCOUNT}}$
+
+![image](./docs/Wireframes/Mobile/Register%20(Mobile).png)
+
+##### ${\textsf{\color{pink}ALL ITINERARIES}}$
+
+![image](./docs/Wireframes/Mobile/All%20Itineraries%20(Mobile).png)
+
+##### ${\textsf{\color{pink}CREATE ITINERARY}}$
+
+![image](./docs/Wireframes/Mobile/Itinerary%20Create%20(Mobile).png)
+
+##### ${\textsf{\color{pink}VIEW ITINERARY (SINGLE)}}$
+
+![image](./docs/Wireframes/Mobile/Itinerary%20View%20(Single)%20(Mobile).png)
+
 ## ${\textsf{\color{lightgreen}PROJECT MANAGEMENT}}$
 
-## ${\textsf{\color{lightgreen}BIBLIOGRAPHY}}$
+## ${\textsf{\color{lightgreen}REFERENCES}}$
 
 - **American Express Travel, 2024.** *2024 Global Travel Trends Report.* American Express.
 - **Skift Research, 2023.** *The State of the Travel Agency Sector 2023.* Skift.
