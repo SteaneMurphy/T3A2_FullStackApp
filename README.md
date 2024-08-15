@@ -44,6 +44,18 @@ The TravelMate Itinerary Builder addresses these issues by providing a streamlin
 
 ### ${\textsf{\color{lightblue}DATAFLOW DIAGRAM}}$
 
+![image](./docs/Dataflow_Diagram.png)
+
+- **User Interaction:** The user interacts with the system through a Browser.
+- **Login/Registration Process:**
+  - Handles the user's credentials.
+  - Interacts with the Authentication Service (JWT) to validate and generate tokens.
+- **Itinerary Management Process:**
+  - Handles requests related to itineraries.
+  - Interacts with the User Data Store and Itinerary Data Store for saving and retrieving data.
+- **Data Flows:**
+  - Shows how information like login credentials, authentication tokens, and itinerary details move between these components.
+
 ### ${\textsf{\color{lightblue}APPLICATION ARCHITECTURE DIAGRAM}}$
 
 ## ${\textsf{\color{lightgreen}USER STORIES}}$
