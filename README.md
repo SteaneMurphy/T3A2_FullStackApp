@@ -60,11 +60,92 @@ The TravelMate Itinerary Builder addresses these issues by providing a streamlin
 
 ## ${\textsf{\color{lightgreen}USER STORIES}}$
 
+**Account Creation and Management**
+A frequent traveler who likes to keep their plans organised wants to create an account so they can securely store and access their travel itineraries across different devices. Initially, the focus was on simply creating an account, but the revised version emphasizes the need for secure access to itineraries on multiple devices.
+
+**Itinerary Creation**
+A busy professional with limited time for travel planning wants to quickly create a new itinerary by entering key destinations and dates, allowing them to efficiently organize their trip without missing important details. Initially, the idea was centered around simple itinerary creation, but the revision now emphasizes efficiency and the importance of capturing key travel details without hassle.
+
+**Itinerary Editing**
+A spontaneous traveler who often changes plans wants to easily edit their existing itinerary to update their travel plans on the go as new opportunities arise. Initially, the story was about basic editing, but the revision now focuses on the need for flexibility and the ability to adapt plans as new opportunities emerge.
+
+**Data Security**
+A privacy-conscious traveler wants their personal information and itineraries to be securely stored and encrypted so they can trust the app with sensitive travel details and feel safe using it. Initially, the focus was on basic security, but the refined story now highlights the importance of encryption and trust, particularly for users concerned about privacy.
+
+**User Interface & Experience**
+A user who values simplicity and aesthetics wants the app to have a clean and intuitive user interface so they can navigate it easily and enjoy using it to plan their trips. Initially, the focus was on functionality, but the revision now emphasizes the aesthetic and user-friendly aspects of the interface, aligning with the persona’s values.
+
 ## ${\textsf{\color{lightgreen}WIREFRAMES}}$
+
+### ${\textsf{\color{lightblue}DESKTOP (FROM 1024PX)}}$
+
+##### ${\textsf{\color{pink}LOGIN}}$
+
+![image](./docs/Wireframes/Desktop/Login.png)
+
+##### ${\textsf{\color{pink}REGISTER ACCOUNT}}$
+
+![image](./docs/Wireframes/Desktop/Register.png)
+
+##### ${\textsf{\color{pink}ALL ITINERARIES}}$
+
+![image](./docs/Wireframes/Desktop/All%20Itineraries.png)
+
+##### ${\textsf{\color{pink}CREATE ITINERARY}}$
+
+![image](./docs/Wireframes/Desktop/Itinerary%20Create.png)
+
+##### ${\textsf{\color{pink}VIEW ITINERARY (SINGLE)}}$
+
+![image](./docs/Wireframes/Desktop/Itinerary%20View%20(Single).png)
+
+### ${\textsf{\color{lightblue}TABLET (FROM 769PX)}}$
+
+##### ${\textsf{\color{pink}LOGIN}}$
+
+![image](./docs/Wireframes/Tablet/Login%20(Tablet).png)
+
+##### ${\textsf{\color{pink}REGISTER ACCOUNT}}$
+
+![image](./docs/Wireframes/Tablet/Register%20(Tablet).png)
+
+##### ${\textsf{\color{pink}ALL ITINERARIES}}$
+
+![image](./docs/Wireframes/Tablet/All%20Itineraries%20(Tablet).png)
+
+##### ${\textsf{\color{pink}CREATE ITINERARY}}$
+
+![image](./docs/Wireframes/Tablet/Itinerary%20Create%20(Tablet).png)
+
+##### ${\textsf{\color{pink}VIEW ITINERARY (SINGLE)}}$
+
+![image](./docs/Wireframes/Tablet/Itinerary%20View%20(Single)%20(Tablet).png)
+
+### ${\textsf{\color{lightblue}MOBILE (UPTO 768PX)}}$
+
+##### ${\textsf{\color{pink}LOGIN}}$
+
+![image](./docs/Wireframes/Mobile/Login%20(Mobile).png)
+
+##### ${\textsf{\color{pink}REGISTER ACCOUNT}}$
+
+![image](./docs/Wireframes/Mobile/Register%20(Mobile).png)
+
+##### ${\textsf{\color{pink}ALL ITINERARIES}}$
+
+![image](./docs/Wireframes/Mobile/All%20Itineraries%20(Mobile).png)
+
+##### ${\textsf{\color{pink}CREATE ITINERARY}}$
+
+![image](./docs/Wireframes/Mobile/Itinerary%20Create%20(Mobile).png)
+
+##### ${\textsf{\color{pink}VIEW ITINERARY (SINGLE)}}$
+
+![image](./docs/Wireframes/Mobile/Itinerary%20View%20(Single)%20(Mobile).png)
 
 ## ${\textsf{\color{lightgreen}PROJECT MANAGEMENT}}$
 
-## ${\textsf{\color{lightgreen}BIBLIOGRAPHY}}$
+## ${\textsf{\color{lightgreen}REFERENCES}}$
 
 - **American Express Travel, 2024.** *2024 Global Travel Trends Report.* American Express.
 - **Skift Research, 2023.** *The State of the Travel Agency Sector 2023.* Skift.
