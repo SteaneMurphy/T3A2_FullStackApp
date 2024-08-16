@@ -4,7 +4,7 @@
 
 [Link To GitHub Repository](https://github.com/SteaneMurphy/T3A2_FullStackApp)
 
-Clone (HTTPS): https://github.com/SteaneMurphy/T3A2_FullStackApp.git
+Clone (HTTPS): <https://github.com/SteaneMurphy/T3A2_FullStackApp.git>
 
 ## ${\textsf{\color{lightgreen}PROJECT DESCRIPTION}}$
 
@@ -57,6 +57,20 @@ The TravelMate Itinerary Builder addresses these issues by providing a streamlin
   - Shows how information like login credentials, authentication tokens, and itinerary details move between these components.
 
 ### ${\textsf{\color{lightblue}APPLICATION ARCHITECTURE DIAGRAM}}$
+
+![image](./docs/App_Architecture.png)
+
+- **Admin User and Normal User:** Represent the different user roles interacting with the system.
+
+- **Admin Visual Interface and User Visual Interface:** The respective interfaces that admins and normal users interact with.
+
+- **Web Server:** Centralises the handling of requests from both admin and normal users, routing them through the back-end.
+
+- **Back-End (Node.js + Express):** Manages business logic and processes requests.
+
+- **Database (MongoDB):** Stores all application data.
+
+- **Authentication Service (JWT):** Manages user authentication and session handling.
 
 ## ${\textsf{\color{lightgreen}USER STORIES}}$
 
