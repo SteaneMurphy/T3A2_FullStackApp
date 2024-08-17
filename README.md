@@ -159,6 +159,52 @@ A user who values simplicity and aesthetics wants the app to have a clean and in
 
 ## ${\textsf{\color{lightgreen}PROJECT MANAGEMENT}}$
 
+## Project Management Process Overview
+
+### Methodology: Agile (Scrum)
+Our team is using the Agile (Scrum) methodology to manage the TravelMate Itinerary Builder project. This approach allows us to be flexible and adaptive to changes while ensuring that we deliver value incrementally throughout the project lifecycle. Key aspects of our project management process include:
+
+1. **Sprint Planning:**
+   - At the beginning of each sprint, we hold a planning session where we review the project backlog and prioritise tasks for the upcoming sprint.
+   - Tasks are assigned to team members based on their strengths and expertise, ensuring that each person is working on tasks that align with their skill set.
+
+2. **Daily Standups:**
+   - We conduct daily standup meetings where each team member provides updates on what they have accomplished, what they plan to work on, and any blockers they are facing.
+   - This helps us stay aligned as a team and address any issues promptly.
+
+3. **Sprint Reviews and Retrospectives:**
+   - At the end of each sprint, we hold a review session to demonstrate the completed work and gather feedback.
+   - We also conduct a retrospective to discuss what went well, what could be improved, and how we can enhance our processes in future sprints.
+
+4. **Task Assignments:**
+   - Tasks are assigned to team members based on their strengths and expertise. For example:
+     - **Mina** is focusing on backend development and project documentation.
+     - **James** and **William** are responsible for frontend development and user interface design. They will be working on testing and quality assurance also.
+   - This approach ensures that each team member is contributing in areas where they are most effective.
+
+### Project Initialization
+
+As part of our project management process, we have documented the initial setup and planning stages. Below are screenshots that capture the key moments during the project initialization phase.
+
+![Project Initialization - Screenshot 1](docs/ProjectTasksInitial.PNG)
+
+### Sprint Meetings
+
+To demonstrate our commitment to Agile (Scrum) practices, we have also documented our sprint meetings. These photos show the team collaborating during our sprint planning, daily standups, and sprint review sessions.
+
+![Sprint Meeting - Photo 1](docs/sprint_meeting_1.png)
+
+![Sprint Meeting - Photo 2](docs/sprint_meeting_2.png)
+
+![Sprint Meeting - Photo 3](docs/sprint_meeting_3.png)
+
+![Sprint Meeting - Photo 3](docs/sprint_meeting_4.png)
+
+### Conclusion
+
+Our project management process is designed to ensure that we deliver high-quality work in a structured and efficient manner. By utilizing Agile (Scrum) practices and assigning tasks based on team members' strengths, we are confident in our ability to meet the project's goals and deliver a successful TravelMate Itinerary Builder application.
+
+
 ## ${\textsf{\color{lightgreen}REFERENCES}}$
 
 - **American Express Travel, 2024.** *2024 Global Travel Trends Report.* American Express.
