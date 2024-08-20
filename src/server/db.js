@@ -10,7 +10,8 @@ mongoose.connect(process.env.DB_URI)
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
+    password: { type: String, required: true },
+    role: { type: String, default: 'user' } 
 });
 
 const itinerarySchema = new mongoose.Schema({
@@ -20,7 +21,10 @@ const itinerarySchema = new mongoose.Schema({
     activities: [{ type: String }],
     notes: [{ type: String }],
     createdAt: { type: Date, default: Date.now }
+}, {
+    timestamps: true 
 });
+
 
 const User = mongoose.model('User', userSchema);
 const Itinerary = mongoose.model('Itinerary', itinerarySchema);
