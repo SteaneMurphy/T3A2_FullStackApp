@@ -1,6 +1,10 @@
 import React from "react";
-import Video from "./baldurs.mp4";
+import Video from "./assets/HeroVideo.mp4";
+import Google from "./assets/google.svg";
+import Twitter from "./assets/twitter.svg";
+import Apple from "./assets/apple.svg";
 import { Link } from "react-router-dom";
+import NavBar from './NavBar';
 
 const Login = () => {
     //   const [email, setEmail] = useState('');
@@ -40,24 +44,35 @@ const Login = () => {
         <>      
             <div class="columns">
                 <div class="column">
-                    <video >
-                        <source autoplay loop muted src={Video}/>
+                    <video autoplay="autoplay" muted loop preload="auto">
+                        <source src={Video}/>
                     </video> 
                 </div>
                 <div class="column">
                     <h2 className="my-5 is-size-5">Welcome Back!</h2>
                     <h3>Please enter your details to sign in.</h3>
-                    <p>Password</p>
-                    <input
-                    class="input is-rounded"
-                    type="password"
-                    placeholder="Enter your password..."
-                    />
+                    <div class="columns">
+                        <div class="column signin">
+                        <img src={Apple}></img>
+                        </div>
+                        <div class="column signin">
+                        <img src={Google}></img>
+                        </div>
+                        <div class="column signin">
+                        <img src={Twitter}></img>
+                        </div>
+                    </div>
                     <p>E-mail Address</p>
                     <input
                     class="input is-rounded"
                     type="text"
                     placeholder="Enter your email..."
+                    />
+                    <p>Password</p>
+                    <input
+                    class="input is-rounded"
+                    type="password"
+                    placeholder="Enter your password..."
                     />
                 </div>
             </div>
