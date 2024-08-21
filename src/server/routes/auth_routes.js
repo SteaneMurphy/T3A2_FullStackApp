@@ -5,7 +5,7 @@ import { User } from '../db.js';
 
 const router = Router();
 
-// Register new user
+// Register new user (Create)
 router.post('/register', async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -26,7 +26,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// Login user
+// Login user (Read)
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -39,6 +39,55 @@ router.post('/login', async (req, res) => {
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.send({ token });
+    } catch (err) {
+        res.status(400).send({ error: err.message });
+    }
+});
+
+// Get user details (Read)
+router.get('/user/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id).select('-password'); // Exclude password from the result
+
+        if (!user) return res.status(404).send({ error: 'User not found' });
+
+        res.send(user);
+    } catch (err) {
+        res.status(400).send({ error: err.message });
+    }
+});
+
+// Update user details (Update)
+router.put('/user/:id', async (req, res) => {
+    try {
+        const { name, email, password } = req.body;
+        const updatedData = {};
+
+        if (name) updatedData.name = name;
+        if (email) updatedData.email = email;
+        if (password) {
+            const salt = await bcrypt.genSalt(10);
+            updatedData.password = await bcrypt.hash(password, salt);
+        }
+
+        const user = await User.findByIdAndUpdate(req.params.id, updatedData, { new: true }).select('-password'); // Exclude password from the result
+
+        if (!user) return res.status(404).send({ error: 'User not found' });
+
+        res.send(user);
+    } catch (err) {
+        res.status(400).send({ error: err.message });
+    }
+});
+
+// Delete user account (Delete)
+router.delete('/user/:id', async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.id);
+
+        if (!user) return res.status(404).send({ error: 'User not found' });
+
+        res.send({ message: 'User deleted successfully' });
     } catch (err) {
         res.status(400).send({ error: err.message });
     }

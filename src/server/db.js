@@ -26,8 +26,18 @@ const itinerarySchema = new mongoose.Schema({
     timestamps: true 
 });
 
+const destinationSchema = new mongoose.Schema({
+    user: { type: mongoose.ObjectId, ref: 'User', required: true },
+    name: { type: String, required: true },
+    location: { type: String, required: true },
+    description: { type: String },
+    createdAt: { type: Date, default: Date.now }
+}, {
+    timestamps: true
+});
 
 const User = mongoose.model('User', userSchema);
 const Itinerary = mongoose.model('Itinerary', itinerarySchema);
+const Destination = mongoose.model('Destination', destinationSchema);
 
-export { User, Itinerary };
+export { User, Itinerary, Destination };
