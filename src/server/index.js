@@ -4,10 +4,11 @@ import mongoose from 'mongoose';
 import authRoutes from './routes/auth_routes.js';
 import itineraryRoutes from './routes/itinerary_routes.js';
 import destinationRoutes from './routes/destination_routes.js';
+import cors from 'cors';
 
 dotenv.config();
-
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.use(authRoutes);

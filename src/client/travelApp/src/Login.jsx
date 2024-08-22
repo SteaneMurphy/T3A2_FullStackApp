@@ -5,7 +5,7 @@ import Twitter from "./assets/twitter.svg";
 import Apple from "./assets/apple.svg";
 import Logo from "./assets/logo.png"
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthStore } from './AuthStore';
+import useAuthStore from './store.js';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -23,7 +23,7 @@ const Login = () => {
       }
   
       try {
-        const response = await fetch('http://localhost:3000/login', {
+        const response = await fetch(`http://localhost:4000/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -110,3 +110,5 @@ const Login = () => {
         </div>
       );
     }
+  
+export default Login;
