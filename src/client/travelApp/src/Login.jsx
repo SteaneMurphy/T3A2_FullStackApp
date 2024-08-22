@@ -3,8 +3,8 @@ import Video from "./assets/HeroVideo.mp4";
 import Google from "./assets/google.svg";
 import Twitter from "./assets/twitter.svg";
 import Apple from "./assets/apple.svg";
-import { Link } from "react-router-dom";
-import NavBar from './NavBar';
+import Logo from "./assets/logo.png"
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
     //   const [email, setEmail] = useState('');
@@ -39,6 +39,11 @@ const Login = () => {
 //       setError(err.message);
 //       console.error('Login error:', err);
 //     }
+    const nav = useNavigate()
+    const submitHandler = (e) => {
+        e.preventDefault()
+        nav(`/trips`)
+    };
     
     return (
         <>      
@@ -49,6 +54,7 @@ const Login = () => {
                     </video> 
                 </div>
                 <div class="column">
+                    <img src={Logo}></img>
                     <h2 className="my-5 is-size-5">Welcome Back!</h2>
                     <h3>Please enter your details to sign in.</h3>
                     <div class="columns">
@@ -62,18 +68,30 @@ const Login = () => {
                         <img src={Twitter}></img>
                         </div>
                     </div>
-                    <p>E-mail Address</p>
-                    <input
-                    class="input is-rounded"
-                    type="text"
-                    placeholder="Enter your email..."
-                    />
-                    <p>Password</p>
-                    <input
-                    class="input is-rounded"
-                    type="password"
-                    placeholder="Enter your password..."
-                    />
+                        <div class="field">
+                            <p class="control has-icons-left has-icons-right">
+                                <input class="input" type="email" placeholder="Enter your email..."/>
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                                </span>
+                            </p>
+                            </div>
+                            <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input" type="password" placeholder="Enter your password..."/>
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                                </span>
+                            </p>
+                            </div>
+                            <div class="field">
+                            <form onSubmit={submitHandler}>
+                                <p class="control">
+                                    <button class="button is-success">Sign In</button>
+                                </p>
+                                <p>Don't have an account yet?<Link to="register"> Sign Up</Link></p>
+                            </form>
+                        </div>
                 </div>
             </div>
         </>
