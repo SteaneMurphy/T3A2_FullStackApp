@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { Itinerary } from '../db.js';
-import authenticate from '../middleware/authenticate.js'; // Middleware for JWT authentication
+import authenticate from '../middleware/authenticate.js'; 
 
 const router = Router();
 
