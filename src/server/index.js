@@ -7,6 +7,7 @@ import destinationRoutes from './routes/destination_routes.js';
 import cors from 'cors';
 
 dotenv.config();
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -15,9 +16,16 @@ app.use(authRoutes);
 app.use(itineraryRoutes);
 app.use(destinationRoutes);
 
+// Database connection
 mongoose.connect(process.env.DB_URI)
     .then(() => {
         console.log('Connected to MongoDB');
-        app.listen(4000, () => console.log('Server running on port 4000'));
+        // Only start the server if this file is executed directly
+        if (process.env.NODE_ENV !== 'test') {
+            app.listen(4000, () => console.log('Server running on port 4000'));
+        }
     })
     .catch(err => console.error(err));
+
+// Export the app for testing
+export default app;
