@@ -26,7 +26,8 @@ describe('Destination Routes', () => {
             .send({
                 name: 'Test Destination',
                 location: 'Test Location',
-                description: 'A test description'
+                description: 'A test description',
+                data: fs.readFileSync("./assets/test3.jpg")
             });
 
         expect(response.statusCode).toBe(201);
