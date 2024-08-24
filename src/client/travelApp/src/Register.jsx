@@ -20,8 +20,6 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        console.log('Submitting with:', { firstName, lastName, email, password });
 
         try {
             await addUser(firstName, lastName, email, password);

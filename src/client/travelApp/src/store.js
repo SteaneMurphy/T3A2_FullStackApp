@@ -24,7 +24,6 @@ const useStore = create((set) => ({
         body: JSON.stringify(newUserEntry),
       })
       const returnedEntry = await response.json();
-      console.log(returnedEntry);
     }
   }
 ));

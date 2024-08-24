@@ -1,17 +1,28 @@
 import React from "react";
-import Video from "./assets/HeroVideo.mp4";
-import Google from "./assets/google.svg";
-import Twitter from "./assets/twitter.svg";
-import Apple from "./assets/apple.svg";
-import Logo from "./assets/logo.png"
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
+import SubmitButton from "./components/SubmitButton";
+import DisplayImage from "./components/DisplayImage";
+import TripOverview from "./components/TripOverview";
 
 const ShowTrips = () => {   
     return (
         <>     
             <NavBar />
-            <h2>Show all Itineraries</h2>
+            <div className="columns">
+                <div className="column">
+                    <h2>Your Itineraries</h2>
+                    <TripOverview />
+                    <TripOverview />
+                    <TripOverview />
+                </div>
+                <div className="column">
+                    <h2>LET'S GO PLACES!</h2>
+                    <h2>Time to plan your next trip...</h2>
+                    <SubmitButton buttonText={"Create an itinerary!"}/>
+                    <DisplayImage />
+                </div>
+            </div>
         </>
     )
 };
