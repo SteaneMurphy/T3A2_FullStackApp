@@ -22,7 +22,8 @@ const itinerarySchema = new mongoose.Schema({
     destinations: [{ type: String }],
     activities: [{ type: String }],
     notes: [{ type: String }],
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    data: { type: Buffer },
 }, {
     timestamps: true 
 });
@@ -32,7 +33,8 @@ const destinationSchema = new mongoose.Schema({
     name: { type: String, required: true },
     location: { type: String, required: true },
     description: { type: String },
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    data: { type: Buffer },
 }, {
     timestamps: true
 });

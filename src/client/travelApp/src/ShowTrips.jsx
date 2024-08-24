@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useStore } from "./store";
-import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
 import SubmitButton from "./components/SubmitButton";
 import DisplayImage from "./components/DisplayImage";
