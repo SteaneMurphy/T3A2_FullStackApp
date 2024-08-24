@@ -5,7 +5,7 @@ import authenticate from '../middleware/authenticate.js';
 const router = Router();
 
 // Get list of itineraries
-router.get('/itineraries', authenticate, async (req, res) => {
+router.get('/trips', authenticate, async (req, res) => {
     try {
         const itineraries = await Itinerary.find({ user: req.user.id });
         res.send(itineraries);
@@ -15,7 +15,7 @@ router.get('/itineraries', authenticate, async (req, res) => {
 });
 
 // Get one itinerary
-router.get('/itineraries/:id', authenticate, async (req, res) => {
+router.get('/trips/:id', authenticate, async (req, res) => {
     try {
         const itinerary = await Itinerary.findById(req.params.id);
         if (itinerary) {
@@ -29,7 +29,7 @@ router.get('/itineraries/:id', authenticate, async (req, res) => {
 });
 
 // Create a new itinerary
-router.post('/itineraries', authenticate, async (req, res) => {
+router.post('/trips', authenticate, async (req, res) => {
     try {
         const newItinerary = await Itinerary.create({ ...req.body, user: req.user.id });
         res.status(201).send(newItinerary);
@@ -39,7 +39,7 @@ router.post('/itineraries', authenticate, async (req, res) => {
 });
 
 // Update an itinerary
-router.put('/itineraries/:id', authenticate, async (req, res) => {
+router.put('/trips/:id', authenticate, async (req, res) => {
     try {
         const itinerary = await Itinerary.findByIdAndUpdate(req.params.id, req.body, { returnDocument: 'after' });
         if (itinerary) {
@@ -53,7 +53,7 @@ router.put('/itineraries/:id', authenticate, async (req, res) => {
 });
 
 // Delete an itinerary
-router.delete('/itineraries/:id', authenticate, async (req, res) => {
+router.delete('/trips/:id', authenticate, async (req, res) => {
     try {
         const itinerary = await Itinerary.findByIdAndDelete(req.params.id);
         if (itinerary) {

@@ -10,8 +10,27 @@ const useAuthStore = create((set) => ({
 }));
 
 const useStore = create((set) => ({
-    user: {},
+    trips: [],
+    load: async () => {
+      const { session_id } = useAuthStore.getState();
 
+      const response = await (await fetch(`${apiBase}/trips`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${session_id}`
+        }
+      }))
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch trips');
+      }
+
+      const trips = await response.json();
+      set({ trips });
+    },
+  
+    user: {},
     addUser: async (_firstName, _lastName, _email, _password) => {
       const newUserEntry = { firstName: _firstName, lastName: _lastName, 
                              email: _email, password: _password };
@@ -23,7 +42,14 @@ const useStore = create((set) => ({
         },
         body: JSON.stringify(newUserEntry),
       })
-      const returnedEntry = await response.json();
+
+      if (response.ok) {
+        const { token } = await response.json();
+        useAuthStore.getState().setUser(token);
+      } 
+      else {
+          console.error("Failed to register user");
+      }
     }
   }
 ));

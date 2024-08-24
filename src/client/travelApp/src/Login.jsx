@@ -37,9 +37,8 @@ const Login = () => {
         }
   
         //set session_id in auth store
-        const session_id = await response.json();
-        setUser(session_id);
-        console.log(session_id);
+        const { token } = await response.json();
+        setUser(token);
         navigate('/trips');
   
       } catch (err) {

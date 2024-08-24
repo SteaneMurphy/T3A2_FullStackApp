@@ -21,7 +21,7 @@ describe('Itinerary Routes', () => {
 
     it('should get a list of itineraries', async () => {
         const response = await request(app)
-            .get('/itineraries')
+            .get('/trips')
             .set('Authorization', `Bearer ${token}`);
 
         expect(response.statusCode).toBe(200);

@@ -48,6 +48,13 @@ async function seed() {
                 destinations: [createdDestinations[2]._id, createdDestinations[3]._id],
                 activities: ['Sightseeing', 'Park Walk'],
                 notes: ['Bring a camera']
+            },
+            {
+                user: createdUsers[1]._id,
+                title: 'New York Adventure 2',
+                destinations: [createdDestinations[2]._id, createdDestinations[3]._id],
+                activities: ['Sightseeing', 'Park Walk'],
+                notes: ['Bring a camera']
             }
         ];
 
