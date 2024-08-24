@@ -15,8 +15,8 @@ async function seed() {
         const hashedPassword = await bcrypt.hash('password123', salt);
 
         const users = [
-            { name: 'Alice', email: 'alice@example.com', password: hashedPassword, role: 'user' }, 
-            { name: 'Bob', email: 'bob@example.com', password: hashedPassword, role: 'user' }
+            { firstName: 'Alice', lastName: 'Test', email: 'alice@example.com', password: hashedPassword, role: 'user' }, 
+            { firstName: 'Bob', lastName: 'Test', email: 'bob@example.com', password: hashedPassword, role: 'user' }
         ];
 
         const createdUsers = await User.insertMany(users);

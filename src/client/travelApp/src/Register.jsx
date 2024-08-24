@@ -1,16 +1,57 @@
-import React from "react";
-import Video from "./assets/HeroVideo.mp4";
-import Google from "./assets/google.svg";
-import Twitter from "./assets/twitter.svg";
-import Apple from "./assets/apple.svg";
-import Logo from "./assets/logo.png"
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useStore } from './store.js';
+import { Link, useNavigate } from "react-router-dom";
+import VideoPlayer from "./components/VideoPlayer.jsx";
+import Socials from "./components/Socials.jsx";
+import { FirstNameField, LastNameField } from "./components/NameField.jsx";
+import EmailField from "./components/EmailField.jsx";
+import PasswordField from "./components/PasswordField.jsx";
+import SubmitButton from "./components/SubmitButton.jsx";
+import ErrorField from "./components/ErrorField.jsx";
 
-const Register = () => {  
+const Register = () => {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const addUser = useStore((state) => state.addUser);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        console.log('Submitting with:', { firstName, lastName, email, password });
+
+        try {
+            await addUser(firstName, lastName, email, password);
+            navigate('/trips');
+          } 
+          catch (err) {
+            setError('site could not be reached');
+            console.error('Login error:', err);
+          }
+        
+    };
+
     return (
-        <>      
-            <h2>Registration Page</h2>
-        </>
+        <div className="columns">
+          <div className="column">
+            <Socials />
+            <form onSubmit={handleSubmit}>
+              <FirstNameField name={firstName} setFirstName={setFirstName} />  
+              <LastNameField name={lastName} setLastName={setLastName} /> 
+              <EmailField email={email} setEmail={setEmail} />
+              <PasswordField password={password} setPassword={setPassword} />
+              <ErrorField error={error} />
+              <SubmitButton buttonText={ "Sign Up" } />
+              <p> Already have an account? <Link to="/login">Sign In</Link></p>
+            </form>
+          </div>
+          <div className="column">
+            <VideoPlayer />
+          </div>
+        </div>
     )
 };
 

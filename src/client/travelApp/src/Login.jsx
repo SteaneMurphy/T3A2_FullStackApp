@@ -36,8 +36,10 @@ const Login = () => {
           throw new Error('invalid username of password');
         }
   
-        const data = await response.json();
-        setUser(data);
+        //set session_id in auth store
+        const session_id = await response.json();
+        setUser(session_id);
+        console.log(session_id);
         navigate('/trips');
   
       } catch (err) {
@@ -57,7 +59,7 @@ const Login = () => {
               <EmailField email={email} setEmail={setEmail} />
               <PasswordField password={password} setPassword={setPassword} />
               <ErrorField error={error} />
-              <SubmitButton buttonText={ "Sign In"} />
+              <SubmitButton buttonText={ "Sign In" } />
               <p> Don't have an account yet? <Link to="/register">Sign Up</Link></p>
             </form>
           </div>

@@ -5,9 +5,11 @@ import Register from './Register';
 import ShowTrips from './ShowTrips';
 import CreateTrip from './CreateTrip';
 import SingleTrip from './SingleTrip';
+import { useEffect } from "react";
 
 const App = () => {
 
+  
   return (
     <>
       <Routes>

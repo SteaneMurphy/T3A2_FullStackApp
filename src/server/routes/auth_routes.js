@@ -8,7 +8,7 @@ const router = Router();
 // Register new user (Create)
 router.post('/register', async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { firstName, lastName, email, password } = req.body;
         const existingUser = await User.findOne({ email });
 
         if (existingUser) return res.status(400).send({ error: 'Email already in use' });
@@ -16,7 +16,7 @@ router.post('/register', async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const newUser = new User({ name, email, password: hashedPassword });
+        const newUser = new User({ firstName, lastName, email, password: hashedPassword });
         await newUser.save();
 
         const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
@@ -60,10 +60,11 @@ router.get('/user/:id', async (req, res) => {
 // Update user details (Update)
 router.put('/user/:id', async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { firstName, lastName, email, password } = req.body;
         const updatedData = {};
 
-        if (name) updatedData.name = name;
+        if (firstName) updatedData.firstName = firstName;
+        if (lastName) updatedData.lastName = lastName;
         if (email) updatedData.email = email;
         if (password) {
             const salt = await bcrypt.genSalt(10);

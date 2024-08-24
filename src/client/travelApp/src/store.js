@@ -1,10 +1,33 @@
 import { create } from 'zustand';
 
+const apiBase = "http://localhost:4000";
+
+//store user session token
 const useAuthStore = create((set) => ({
-  user: null,
-  setUser: (userData) => set({ user: userData }),
-  clearUser: () => set({ user: null }),
+  session_id: null,
+  setUser: (token) => set({ session_id: token }),
+  clearUser: () => set({ session_id: null }),
 }));
+
+const useStore = create((set) => ({
+    user: {},
+
+    addUser: async (_firstName, _lastName, _email, _password) => {
+      const newUserEntry = { firstName: _firstName, lastName: _lastName, 
+                             email: _email, password: _password };
+                             console.log(newUserEntry);
+      const response = await fetch(`${apiBase}/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUserEntry),
+      })
+      const returnedEntry = await response.json();
+      console.log(returnedEntry);
+    }
+  }
+));
 
 const useTripStore = create((set) => ({
   trips: {},
@@ -20,7 +43,7 @@ const useTripStore = create((set) => ({
 
   fetchTrips: async () => {
     try {
-      const response = await fetch('http://localhost:4000/trips');
+      const response = await fetch(`${apiBase}/trips`);
       const tripsArray = await response.json();
       const tripsObject = {};
       for (let i = 0; i < tripsArray.length; i++) {
@@ -35,7 +58,7 @@ const useTripStore = create((set) => ({
 
   fetchTrip: async (id) => {
     try {
-      const response = await fetch(`http://localhost:4000/trips/${id}`);
+      const response = await fetch(`${apiBase}/trips/${id}`);
       const trip = await response.json();
       set((state) => ({
         trips: { ...state.trips, [id]: trip },
@@ -46,4 +69,4 @@ const useTripStore = create((set) => ({
   },
 }));
 
-export { useAuthStore, useTripStore };
+export { useAuthStore, useTripStore, useStore };

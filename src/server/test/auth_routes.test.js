@@ -18,7 +18,8 @@ describe('Auth Routes', () => {
         const response = await request(app)
             .post('/register')
             .send({
-                name: 'Test User',
+                firstName: 'Test User',
+                lastName: 'Test User',
                 email: 'testuser@example.com',
                 password: 'password123'
             });
