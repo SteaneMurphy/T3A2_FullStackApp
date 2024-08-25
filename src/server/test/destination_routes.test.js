@@ -72,16 +72,19 @@ describe('Destination Routes', () => {
             .put(`/destinations/${destinationId}`)
             .set('Authorization', `Bearer ${token}`)
             .send({
-                firstName: 'firstName',
-                lastName: 'lastName',
-                name: 'Test Destination',
-                location: 'Test Location',
-                description: 'A test description',
-                data: fs.readFileSync("./assets/test3.jpg")
+                name: 'updated name',
+                location: 'updated location',
+                description: 'updated description',
             });
 
-        expect(response.statusCode).toBe(201);
-        expect(response.body).toHaveProperty('_id');
-        expect(response.body.name).toBe('Test Destination');
+            expect(response.statusCode).toBe(200);                       //test that route works and returns something
+            expect(response.body).toBeInstanceOf(Object);                //test that object is returned
+            expect(response.body).toHaveProperty('_id');                 //test object has updated properties
+            expect(response.body).toHaveProperty('name', 'updated name');
+            expect(response.body).toHaveProperty('location', 'updated location');
+            expect(response.body).toHaveProperty('description', 'updated description');
+            expect(response.body).toHaveProperty('data');
+            expect(response.body).toHaveProperty('createdAt');
+            expect(response.body).toHaveProperty('updatedAt');
     });
 });
