@@ -38,4 +38,42 @@ const LastNameField = ({ name, setLastName }) => {
     )
 };
 
-export { FirstNameField, LastNameField };
+const TripNameField = ({ name, setLastName }) => {
+    return (
+        <>
+            <div className="field">
+                <p>
+                <input
+                    className="input"
+                    type="text"
+                    placeholder={`Enter your last name...`}
+                    value={name}
+                    //onChange={(e) => setLastName(e.target.value)}
+                    required
+                />
+                </p>
+            </div>
+        </>
+    )
+};
+
+const CountrySelectField = ({ name, setLastName }) => {
+    return (
+        <>
+            <div className="field">
+                <p>
+                <input
+                    className="input"
+                    type="text"
+                    placeholder={`Enter your last name...`}
+                    value={name}
+                    //onChange={(e) => setLastName(e.target.value)}
+                    required
+                />
+                </p>
+            </div>
+        </>
+    )
+};
+
+export { FirstNameField, LastNameField, TripNameField, CountrySelectField };
