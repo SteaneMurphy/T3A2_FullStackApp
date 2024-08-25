@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import { User, Itinerary, Destination } from './db.js';
 import fs from 'fs';
-import multer from 'multer';
 
 async function seed() {
     try {
@@ -26,10 +25,10 @@ async function seed() {
 
         // Create destinations with user reference
         const destinations = [
-            { name: 'Eiffel Tower', location: 'Paris, France', user: createdUsers[0]._id, data: fs.readFileSync("./assets/test1.jpg") },
-            { name: 'Louvre Museum', location: 'Paris, France', user: createdUsers[0]._id, data: fs.readFileSync("./assets/test1.jpg") },
-            { name: 'Statue of Liberty', location: 'New York, USA', user: createdUsers[1]._id, data: fs.readFileSync("./assets/test1.jpg") },
-            { name: 'Central Park', location: 'New York, USA', user: createdUsers[1]._id, data: fs.readFileSync("./assets/test1.jpg") }
+            { name: 'Eiffel Tower', location: 'Paris, France', description: 'a tower in France', data: fs.readFileSync("./assets/test1.jpg") },
+            { name: 'Louvre Museum', location: 'Paris, France', description: 'a museum in France', data: fs.readFileSync("./assets/test1.jpg") },
+            { name: 'Statue of Liberty', location: 'New York, USA', description: 'a statue in America', data: fs.readFileSync("./assets/test1.jpg") },
+            { name: 'Central Park', location: 'New York, USA', description: 'a park in America', data: fs.readFileSync("./assets/test1.jpg") }
         ];
 
         const createdDestinations = await Destination.insertMany(destinations);

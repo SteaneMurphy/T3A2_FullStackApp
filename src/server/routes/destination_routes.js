@@ -4,15 +4,16 @@ import authenticate from '../middleware/authenticate.js';
 
 const router = Router();
 
+//## needs admin role ##//
 // Create a new destination (Create)
-router.post('/destinations', authenticate, async (req, res) => {
-    try {
-        const newDestination = await Destination.create({ ...req.body, user: req.user.id });
-        res.status(201).send(newDestination);
-    } catch (err) {
-        res.status(400).send({ error: err.message });
-    }
-});
+// router.post('/destinations', authenticate, async (req, res) => {
+//     try {
+//         const newDestination = await Destination.create({ ...req.body, user: req.user.id });
+//         res.status(201).send(newDestination);
+//     } catch (err) {
+//         res.status(400).send({ error: err.message });
+//     }
+// });
 
 // Get a destination (Read)
 router.get('/destinations/:id', authenticate, async (req, res) => {
@@ -31,7 +32,7 @@ router.get('/destinations/:id', authenticate, async (req, res) => {
 // Get list of all destinations (Read)
 router.get('/destinations', authenticate, async (req, res) => {
     try {
-        const destinations = await Destination.find({ user: req.user.id });
+        const destinations = await Destination.find({});
         res.send(destinations);
     } catch (err) {
         res.status(400).send({ error: err.message });
