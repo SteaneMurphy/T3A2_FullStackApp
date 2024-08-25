@@ -3,6 +3,7 @@ import app from '../index.js';
 import { User } from '../db.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import fs from 'fs';
 
 describe('Destination Routes', () => {
     let token;
@@ -24,6 +25,8 @@ describe('Destination Routes', () => {
             .post('/destinations')
             .set('Authorization', `Bearer ${token}`)
             .send({
+                firstName: 'firstName',
+                lastName: 'lastName',
                 name: 'Test Destination',
                 location: 'Test Location',
                 description: 'A test description',
