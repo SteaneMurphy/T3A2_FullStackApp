@@ -29,7 +29,6 @@ const itinerarySchema = new mongoose.Schema({
 });
 
 const destinationSchema = new mongoose.Schema({
-    user: { type: mongoose.ObjectId, ref: 'User', required: true },
     name: { type: String, required: true },
     location: { type: String, required: true },
     description: { type: String },
