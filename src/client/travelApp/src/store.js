@@ -6,6 +6,7 @@ const useGlobalStore = create((set) => ({
     session_id: null,
     user: {},
     itineraries: {},
+    destinations: {},
 
     setUserSession: (token, user) => set({ session_id: token, user: user }),
 
@@ -65,7 +66,37 @@ const useGlobalStore = create((set) => ({
       else {
           console.error("Failed to register user");
       }
-    }
+    },
+
+    fetchDestinations: async () => {
+      const { session_id } = useGlobalStore.getState();
+
+      try {
+        const response = await fetch(`${apiBase}/destinations`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${session_id}`
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch destinations');
+        }
+  
+        const destinationsArray = await response.json();
+
+        const destinationsObject = destinationsArray.reduce((acc, destination) => {
+          acc[destination._id] = destination;
+          return acc;
+        }, {});
+  
+        set({ destinations: destinationsObject });
+      } 
+      catch (error) {
+        console.error('Failed to fetch destinations:', error);
+      }
+    },  
 }));
 
 export { useGlobalStore };

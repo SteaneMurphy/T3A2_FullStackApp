@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useGlobalStore } from "./store";
 import NavBar from "./NavBar";
 import SubmitButton from "./components/SubmitButton";
-import DisplayImage from "./components/DisplayImage";
+import MainImage from "./assets/allTripsMainImage.webp";
 import TripOverview from "./components/TripOverview";
 
 const ShowTrips = () => {   
@@ -27,7 +27,7 @@ const ShowTrips = () => {
                     <h2>LET'S GO PLACES!</h2>
                     <h2>Time to plan your next trip...</h2>
                     <Link to="/create"><SubmitButton buttonText={"Create an itinerary!"}/></Link>
-                    <DisplayImage />
+                    <img src={MainImage}></img>
                 </div>
             </div>
         </>

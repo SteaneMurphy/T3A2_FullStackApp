@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DestinationOverview from "./DestinationOverview";
 import { useNavigate } from "react-router-dom";
+import { useGlobalStore } from "../store";
 
 const DestinationList = () => {
-    const loadTrips = useStore((state) => state.load);
-    const trips = useStore((state) => state.trips);
-
-    // Fetch trips when the component mounts
-    useEffect(() => {loadTrips();}, [loadTrips]);
-    
+    const fetchDestinations = useGlobalStore((state) => state.fetchDestinations);
+    const destinations = useGlobalStore((state) => state.destinations);
     const navigate = useNavigate();
+
+    useEffect(() => {fetchDestinations();}, [fetchDestinations]);
 
     const HandleClick = () => {
         navigate(`/create`);
@@ -19,12 +18,12 @@ const DestinationList = () => {
         <>
             <div className="box scrollable-box">
                 <div className="box" onClick={HandleClick} role="button" tabIndex="0">
-                    {trips.length > 0 ? (
-                        trips.map((trip) => (
-                            <DestinationOverview /> 
-                        ))) 
-                        :(
-                            <p>No destinations available</p>
+                    {Object.keys(destinations).length > 0 ? (
+                        Object.values(destinations).map((destination) => (
+                            <DestinationOverview key={destination._id} destination={destination} />
+                        ))
+                    ) : (
+                        <p>No destinations available</p>
                     )}  
                 </div>
             </div>

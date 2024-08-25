@@ -46,7 +46,7 @@ const TripNameField = ({ name, setLastName }) => {
                 <input
                     className="input"
                     type="text"
-                    placeholder={`Enter your last name...`}
+                    placeholder={`Enter itinerary name...`}
                     value={name}
                     //onChange={(e) => setLastName(e.target.value)}
                     required
@@ -65,7 +65,7 @@ const CountrySelectField = ({ name, setLastName }) => {
                 <input
                     className="input"
                     type="text"
-                    placeholder={`Enter your last name...`}
+                    placeholder={`Type to select country...`}
                     value={name}
                     //onChange={(e) => setLastName(e.target.value)}
                     required
