@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthStore } from './store.js';
+import { useGlobalStore } from './store.js';
 import VideoPlayer from "./components/VideoPlayer.jsx";
 import Socials from "./components/Socials.jsx";
 import EmailField from "./components/EmailField.jsx";
@@ -12,7 +12,8 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const setUser = useAuthStore((state) => state.setUser);
+    const setUser = useGlobalStore((state) => state.setUserSession);
+    const fetchUserItineraries = useGlobalStore((state) => state.fetchUserItineraries);
     const navigate = useNavigate();
   
     const handleSubmit = async (e) => {
@@ -37,8 +38,9 @@ const Login = () => {
         }
   
         //set session_id in auth store
-        const { token } = await response.json();
-        setUser(token);
+        const { token, user } = await response.json();
+        setUser(token, user);
+        await fetchUserItineraries();
         navigate('/trips');
   
       } catch (err) {

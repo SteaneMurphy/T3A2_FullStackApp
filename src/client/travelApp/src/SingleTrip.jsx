@@ -1,9 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import DestinationList from "./components/DestinationList";
 import DestinationDescription from "./components/DestinationDescription";
 import Map from "./components/Map";
+import SubmitButton from "./components/SubmitButton";
 
 const SingleTrip = () => {
    
@@ -23,6 +23,7 @@ const SingleTrip = () => {
                     <Map />
                     <h2>NOT QUITE RIGHT...</h2>
                     <h2>Want to edit your itinerary?</h2>
+                    <SubmitButton buttonText={"Edit Itinerary!"} />
                 </div>
             </div>
         </>

@@ -8,3 +8,9 @@ h1 {
 {
     width: 40px;
 }
+
+.scrollable-box {
+    max-height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }

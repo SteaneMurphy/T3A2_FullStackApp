@@ -1,17 +1,13 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useStore } from "./store";
+import { useGlobalStore } from "./store";
 import NavBar from "./NavBar";
 import SubmitButton from "./components/SubmitButton";
 import DisplayImage from "./components/DisplayImage";
 import TripOverview from "./components/TripOverview";
 
 const ShowTrips = () => {   
-    const loadTrips = useStore((state) => state.load);
-    const trips = useStore((state) => state.trips);
-    console.log(trips);
-    // Fetch trips when the component mounts
-    useEffect(() => {loadTrips();}, [loadTrips]);
+    const allTrips = useGlobalStore((state) => state.itineraries);
 
     return (
         <>     
@@ -19,12 +15,12 @@ const ShowTrips = () => {
             <div className="columns">
                 <div className="column">
                     <h2>Your Itineraries</h2>
-                    {trips.length > 0 ? (
-                        trips.map((trip) => (
-                            <TripOverview key={trip._id} trip={trip} /> 
-                        ))) 
-                        :(
-                            <p>No trips available</p>
+                    {Object.keys(allTrips).length > 0 ? (
+                        Object.keys(allTrips).map((id) => (
+                            <TripOverview key={id} trip={allTrips[id]} />
+                        ))
+                    ) : (
+                        <p>No trips available</p>
                     )}
                 </div>
                 <div className="column">

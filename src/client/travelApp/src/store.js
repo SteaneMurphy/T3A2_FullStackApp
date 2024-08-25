@@ -2,39 +2,54 @@ import { create } from 'zustand';
 
 const apiBase = "http://localhost:4000";
 
-//store user session token
-const useAuthStore = create((set) => ({
-  session_id: null,
-  setUser: (token) => set({ session_id: token }),
-  clearUser: () => set({ session_id: null }),
-}));
-
-const useStore = create((set) => ({
-    trips: [],
-    load: async () => {
-      const { session_id } = useAuthStore.getState();
-
-      const response = await (await fetch(`${apiBase}/trips`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${session_id}`
-        }
-      }))
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch trips');
-      }
-
-      const trips = await response.json();
-      set({ trips });
-    },
-  
+const useGlobalStore = create((set) => ({
+    session_id: null,
     user: {},
-    addUser: async (_firstName, _lastName, _email, _password) => {
-      const newUserEntry = { firstName: _firstName, lastName: _lastName, 
-                             email: _email, password: _password };
-                             console.log(newUserEntry);
+    itineraries: {},
+
+    setUserSession: (token, user) => set({ session_id: token, user: user }),
+
+    clearUserSession: () => set({ session_id: null, user: null }),
+
+    fetchUserItineraries: async () => {
+      const { session_id, user } = useGlobalStore.getState();
+
+      if (!session_id) {
+        console.error('No session available, user might not be authenticated');
+        return;
+      }
+  
+      try {
+        const response = await fetch(`${apiBase}/trips`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${session_id}`
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch itineraries');
+        }
+  
+        const itinerariesArray = await response.json();
+        const userItineraries = itinerariesArray.filter(itinerary => itinerary.user === user._id);
+
+        const itinerariesObject = userItineraries.reduce((acc, itinerary) => {
+          acc[itinerary._id] = itinerary;
+          return acc;
+        }, {});
+  
+        set({ itineraries: itinerariesObject });
+      } 
+      catch (error) {
+        console.error('Failed to fetch itineraries:', error);
+      }
+    },
+
+    addUser: async (firstName, lastName, email, password) => {
+      const newUserEntry = { firstName, lastName, email, password };
+
       const response = await fetch(`${apiBase}/register`, {
         method: "POST",
         headers: {
@@ -44,54 +59,13 @@ const useStore = create((set) => ({
       })
 
       if (response.ok) {
-        const { token } = await response.json();
-        useAuthStore.getState().setUser(token);
+        const { token, user } = await response.json();
+        useGlobalStore.getState().setUserSession(token, user);
       } 
       else {
           console.error("Failed to register user");
       }
     }
-  }
-));
-
-const useTripStore = create((set) => ({
-  trips: {},
-
-  setTrips: (tripsArray) => {
-    const tripsObject = {};
-    for (let i = 0; i < tripsArray.length; i++) {
-      const trip = tripsArray[i];
-      tripsObject[trip.id] = trip;
-    }
-    set({ trips: tripsObject });
-  },
-
-  fetchTrips: async () => {
-    try {
-      const response = await fetch(`${apiBase}/trips`);
-      const tripsArray = await response.json();
-      const tripsObject = {};
-      for (let i = 0; i < tripsArray.length; i++) {
-        const trip = tripsArray[i];
-        tripsObject[trip.id] = trip;
-      }
-      set({ trips: tripsObject });
-    } catch (error) {
-      console.error('Failed to fetch trips:', error);
-    }
-  },
-
-  fetchTrip: async (id) => {
-    try {
-      const response = await fetch(`${apiBase}/trips/${id}`);
-      const trip = await response.json();
-      set((state) => ({
-        trips: { ...state.trips, [id]: trip },
-      }));
-    } catch (error) {
-      console.error(`Failed to fetch trip with id ${id}:`, error);
-    }
-  },
 }));
 
-export { useAuthStore, useTripStore, useStore };
+export { useGlobalStore };

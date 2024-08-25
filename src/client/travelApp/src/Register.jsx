@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useStore } from './store.js';
+import { useGlobalStore } from './store.js';
 import { Link, useNavigate } from "react-router-dom";
 import VideoPlayer from "./components/VideoPlayer.jsx";
 import Socials from "./components/Socials.jsx";
@@ -16,13 +16,15 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const addUser = useStore((state) => state.addUser);
+    const addUser = useGlobalStore((state) => state.addUser);
+    const fetchUserItineraries = useGlobalStore((state) => state.fetchUserItineraries);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
             await addUser(firstName, lastName, email, password);
+            await fetchUserItineraries();
             navigate('/trips');
           } 
           catch (err) {

@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
         await newUser.save();
 
         const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.send({ token });
+        res.send({ token, newUser });
     } catch (err) {
         res.status(400).send({ error: err.message });
     }
@@ -38,7 +38,7 @@ router.post('/login', async (req, res) => {
         if (!validPassword) return res.status(400).send({ error: 'Invalid email or password' });
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.send({ token });
+        res.send({ token, user });
     } catch (err) {
         res.status(400).send({ error: err.message });
     }
