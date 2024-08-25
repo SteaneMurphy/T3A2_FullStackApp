@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useStore } from "./store";
 import NavBar from "./NavBar";
 import SubmitButton from "./components/SubmitButton";
@@ -20,18 +21,16 @@ const ShowTrips = () => {
                     <h2>Your Itineraries</h2>
                     {trips.length > 0 ? (
                         trips.map((trip) => (
-                            <TripOverview key={trip._id} trip={trip} />
-                        ))
-                    ) 
-                    : 
-                    (
-                        <p>No trips available</p>
+                            <TripOverview key={trip._id} trip={trip} /> 
+                        ))) 
+                        :(
+                            <p>No trips available</p>
                     )}
                 </div>
                 <div className="column">
                     <h2>LET'S GO PLACES!</h2>
                     <h2>Time to plan your next trip...</h2>
-                    <SubmitButton buttonText={"Create an itinerary!"}/>
+                    <Link to="/create"><SubmitButton buttonText={"Create an itinerary!"}/></Link>
                     <DisplayImage />
                 </div>
             </div>

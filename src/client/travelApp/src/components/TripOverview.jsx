@@ -1,11 +1,17 @@
 import React from "react";
 import DisplayImage from "./DisplayImage";
+import { useNavigate } from "react-router-dom";
 
 const TripOverview = ({ trip }) => {
     const { title, notes, data } = trip;
-    console.log(data);
+    const navigate = useNavigate();
+
+    const HandleClick = () => {
+        navigate(`/trips/${trip._id}`);
+    };
+
     return (
-        <>
+        <div className="box" onClick={HandleClick} role="button" tabIndex="0">
             <div className="columns">
                 <div className="column">
                     <DisplayImage data={data} />
@@ -15,7 +21,7 @@ const TripOverview = ({ trip }) => {
                     <p>{notes}</p>
                 </div>
             </div>
-        </>
+        </div>
     )
 };
 
