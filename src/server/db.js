@@ -34,7 +34,8 @@ const destinationSchema = new mongoose.Schema({
     destination: { type: String, required: true },  
     country: { type: String, required: true },      
     description: { type: String },
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    data: { type: Buffer },
 }, {
     timestamps: true
 });
