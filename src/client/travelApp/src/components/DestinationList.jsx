@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalStore } from "../store";
 
 const DestinationList = () => {
-    const fetchDestinations = useGlobalStore((state) => state.fetchDestinations);
+    //const fetchDestinations = useGlobalStore((state) => state.fetchDestinations);
     const destinations = useGlobalStore((state) => state.destinations);
     const navigate = useNavigate();
 
-    useEffect(() => {fetchDestinations();}, [fetchDestinations]);
+    //useEffect(() => {fetchDestinations();}, [fetchDestinations]);
 
     const HandleClick = () => {
         navigate(`/create`);

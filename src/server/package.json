@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchALL --detectOpenHandles"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchALL --detectOpenHandles --maxWorkers=4"
   },
   "keywords": [],
   "author": "",

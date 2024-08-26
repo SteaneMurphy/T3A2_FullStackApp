@@ -48,7 +48,7 @@ const TripNameField = ({ name, setTripName }) => {
                     type="text"
                     placeholder={`Enter itinerary name...`}
                     value={name}
-                    //onChange={(e) => setLastName(e.target.value)}
+                    onChange={(e) => setTripName(e.target.value)}
                     required
                 />
                 </p>
@@ -67,7 +67,7 @@ const CountrySelectField = ({ name, setCountryName }) => {
                     type="text"
                     placeholder={`Type to select country...`}
                     value={name}
-                    //onChange={(e) => setLastName(e.target.value)}
+                    onChange={(e) => setCountryName(e.target.value)}
                     required
                 />
                 </p>
