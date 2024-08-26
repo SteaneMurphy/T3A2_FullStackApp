@@ -9,9 +9,9 @@ import SubmitButton from "./components/SubmitButton.jsx";
 import ErrorField from "./components/ErrorField.jsx";
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const setUser = useGlobalStore((state) => state.setUserSession);
     const fetchUserItineraries = useGlobalStore((state) => state.fetchUserItineraries);
     const navigate = useNavigate();

@@ -57,7 +57,7 @@ const TripNameField = ({ name, setTripName }) => {
     )
 };
 
-const CountrySelectField = ({ name, setCountryName }) => {
+const CountrySelectField = ({ input, setInput }) => {
     return (
         <>
             <div className="field">
@@ -66,8 +66,8 @@ const CountrySelectField = ({ name, setCountryName }) => {
                     className="input"
                     type="text"
                     placeholder={`Type to select country...`}
-                    value={name}
-                    onChange={(e) => setCountryName(e.target.value)}
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
                     required
                 />
                 </p>

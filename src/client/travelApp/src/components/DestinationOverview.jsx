@@ -1,19 +1,23 @@
 import React from "react";
 import DisplayImage from "./DisplayImage";
 
-const DestinationOverview = () => {
+const DestinationOverview = ({ destination }) => {
+    
+    const HandleClick = () => {
+        
+    };
+
     return (
-        <>
+        <div onClick={() => HandleClick()} role="button" tabIndex="0">
             <div className="columns">
                 <div className="column">
-                    <DisplayImage />
+                    <DisplayImage data={destination.data} />
                 </div>
                 <div className="column">
-                    <h2>Destination Title</h2>
-                    <p>Destination Location</p>
+                    <h2>{destination.name}</h2>
                 </div>
             </div>
-        </>
+        </div>
     )
 };
 
