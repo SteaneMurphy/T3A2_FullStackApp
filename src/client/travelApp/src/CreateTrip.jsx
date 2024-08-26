@@ -10,29 +10,37 @@ import { useGlobalStore } from "./store";
 
 const CreateTrip = () => {
     const fetchDestinations = useGlobalStore((state) => state.fetchDestinations);
-    useEffect(() => {fetchDestinations();}, [fetchDestinations]);
 
     const [tripName, setTripname] = useState('');
     const [selectedCountry, setSelectedCountry] = useState('');
     const [matchingCountries, setMatchingCountries] = useState([]);
+    const [filteredCountries, setFilteredCountries] = useState([]);
+
     useEffect(() => {
-        console.log("Matching Countries updated:", matchingCountries);
-    }, [matchingCountries]);
+        const fetchData = async () => {
+            try {
+                const destinations = await fetchDestinations(); // Fetch destinations
+                setFilteredCountries(destinations); // Set destinations to filteredCountries
+            } catch (error) {
+                console.error("Error fetching destinations:", error);
+            }
+        };
+        fetchData();
+    }, [fetchDestinations]);
 
     const handleCountryChange = (input) => {
-        const countries = [];
         setSelectedCountry(input);
 
         if (input.trim() === '') {
             setMatchingCountries([]);
         } else {
-            const filteredCountries = countries.filter(country =>
+            const filteredResults = filteredCountries.filter(country =>
                 country.toLowerCase().includes(input.toLowerCase())
             );
-            setMatchingCountries(filteredCountries);
+            setMatchingCountries(filteredResults);
         };
 
-        setMatchingCountries(filteredCountries);
+        setMatchingCountries(filteredResults);
     };
 
     const handleSubmit = async (e) => {

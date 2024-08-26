@@ -1,11 +1,10 @@
 import express from 'express';
 import authenticate from '../middleware/authenticate.js';
 import authorizeAdmin from '../middleware/authorizeAdmin.js';
-import { User } from '../db.js';  
+import { User } from '../db.js';
 
 const router = express.Router();
 
-// Admin-only route for deleting a user
 router.delete('/admin/delete-user/:id', authenticate, authorizeAdmin, async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id);
