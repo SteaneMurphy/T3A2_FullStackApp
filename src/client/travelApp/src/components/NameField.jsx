@@ -38,7 +38,7 @@ const LastNameField = ({ name, setLastName }) => {
     )
 };
 
-const TripNameField = ({ name, setLastName }) => {
+const TripNameField = ({ name, setTripName }) => {
     return (
         <>
             <div className="field">
@@ -57,7 +57,7 @@ const TripNameField = ({ name, setLastName }) => {
     )
 };
 
-const CountrySelectField = ({ name, setLastName }) => {
+const CountrySelectField = ({ name, setCountryName }) => {
     return (
         <>
             <div className="field">

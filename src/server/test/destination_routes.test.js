@@ -47,7 +47,7 @@ describe('Destination Routes', () => {
 
         expect(response.statusCode).toBe(200);                       //test that route works and returns something
         expect(response.body).toBeInstanceOf(Array);                 //test that array is returned
-        expect(response.body.length).toEqual(4);                     //test that amount of items in array matches destinations
+        expect(response.body.length).toEqual(20);                     //test that amount of items in array matches destinations
         destinationId = response.body[0]._id;                        //grab the first id for use in the second test    
     });
 
