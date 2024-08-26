@@ -17,7 +17,8 @@ async function seed() {
 
         const users = [
             { firstName: 'Alice', lastName: 'Test', email: 'alice@example.com', password: hashedPassword, role: 'user' }, 
-            { firstName: 'Bob', lastName: 'Test', email: 'bob@example.com', password: hashedPassword, role: 'user' }
+            { firstName: 'Bob', lastName: 'Test', email: 'bob@example.com', password: hashedPassword, role: 'user' },
+            { firstName: 'Fred', lastName: 'Admin', email: 'fred@example.com', password: hashedPassword, role: 'admin' }
         ];
 
         const createdUsers = await User.insertMany(users);

@@ -29,11 +29,12 @@ const itinerarySchema = new mongoose.Schema({
 });
 
 const destinationSchema = new mongoose.Schema({
+    user: { type: mongoose.ObjectId, ref: 'User', required: true },
     name: { type: String, required: true },
-    location: { type: String, required: true },
+    destination: { type: String, required: true },  
+    country: { type: String, required: true },      
     description: { type: String },
-    createdAt: { type: Date, default: Date.now },
-    data: { type: Buffer },
+    createdAt: { type: Date, default: Date.now }
 }, {
     timestamps: true
 });
