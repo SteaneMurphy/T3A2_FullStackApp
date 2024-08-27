@@ -5,6 +5,8 @@ import { User } from '../db.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
+
+
 let adminToken;
 let testUserId;
 
@@ -37,17 +39,17 @@ beforeAll(async () => {
     // Ensure there is no duplicate user before creating a new one
     await User.deleteOne({ email: 'testuser@example.com' });
 
-    // Create a user to be deleted in the test
+    // Create a user to be tested
     const testUser = new User({
         firstName: 'Test',
         lastName: 'User',
         email: 'testuser@example.com',
-        password: await bcrypt.hash('password123', 10), // Ensure password is hashed
+        password: await bcrypt.hash('password123', 10),
         role: 'user'
     });
 
     const savedUser = await testUser.save();
-    testUserId = savedUser._id;  // Save the user's ID for deletion
+    testUserId = savedUser._id;  // Save the user's ID for use in tests
 });
 
 afterAll(async () => {
@@ -57,9 +59,64 @@ afterAll(async () => {
 });
 
 describe('Admin-only routes', () => {
+    it('should allow an admin to create a new user', async () => {
+        const newUser = {
+            firstName: 'New',
+            lastName: 'User',
+            email: 'newuser@example.com',
+            password: 'password123',
+            role: 'user'
+        };
+
+        const res = await request(app)
+            .post('/admin/create-user')
+            .set('Authorization', `Bearer ${adminToken}`)
+            .send(newUser);
+
+        expect(res.statusCode).toEqual(201);
+        expect(res.body).toHaveProperty('email', 'newuser@example.com');
+    });
+
+    it('should allow an admin to retrieve a list of all users', async () => {
+        const res = await request(app)
+            .get('/admin/users')
+            .set('Authorization', `Bearer ${adminToken}`);
+
+        expect(res.statusCode).toEqual(200);
+        expect(Array.isArray(res.body)).toBe(true);
+        expect(res.body.length).toBeGreaterThan(0);
+    });
+
+    it('should allow an admin to retrieve a specific user by ID', async () => {
+        const res = await request(app)
+            .get(`/admin/users/${testUserId}`)
+            .set('Authorization', `Bearer ${adminToken}`);
+
+        expect(res.statusCode).toEqual(200);
+        expect(res.body).toHaveProperty('email', 'testuser@example.com');
+    });
+
+    it('should allow an admin to update a user', async () => {
+        const updatedData = {
+            firstName: 'Updated',
+            lastName: 'User',
+            email: 'updateduser@example.com',
+        };
+
+        const res = await request(app)
+            .put(`/admin/users/${testUserId}`)
+            .set('Authorization', `Bearer ${adminToken}`)
+            .send(updatedData);
+
+        expect(res.statusCode).toEqual(200);
+        expect(res.body).toHaveProperty('email', 'updateduser@example.com');
+        expect(res.body).toHaveProperty('firstName', 'Updated');
+        expect(res.body).toHaveProperty('lastName', 'User');
+    });
+
     it('should allow an admin to delete a user', async () => {
         const res = await request(app)
-            .delete(`/admin/delete-user/${testUserId}`)  // Use the actual user ID created in the test
+            .delete(`/admin/delete-user/${testUserId}`)
             .set('Authorization', `Bearer ${adminToken}`);
 
         console.log('Response Body:', res.body); // Log the response body for debugging
