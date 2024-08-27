@@ -6,12 +6,12 @@ const TripOverview = ({ trip }) => {
     const { title, notes, data } = trip;
     const navigate = useNavigate();
 
-    const HandleClick = () => {
+    const handleClick = () => {
         navigate(`/trips/${trip._id}`);
     };
 
     return (
-        <div className="box" onClick={HandleClick} role="button" tabIndex="0">
+        <div className="box" onClick={handleClick} role="button" tabIndex="0">
             <div className="columns">
                 <div className="column">
                     <DisplayImage data={data} />

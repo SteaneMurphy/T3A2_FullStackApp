@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 const bufferToBase64 = (buffer) => {
-    const binary = String.fromCharCode(...new Uint8Array(buffer));
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    for (let i = 0; i < bytes.byteLength; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
     return window.btoa(binary);
 };
 
-//function needs reworking
 const DisplayImage = ({ data }) => {
     const [imageUrl, setImageUrl] = useState("");
 

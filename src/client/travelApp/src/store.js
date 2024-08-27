@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-const apiBase = "http://localhost:4000";
+const apiBase = process.env.REACT_APP_API_URL;
 
 const useGlobalStore = create((set) => ({
     session_id: null,

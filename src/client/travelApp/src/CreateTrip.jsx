@@ -44,6 +44,7 @@ const CreateTrip = () => {
     const [countryInput, setCountryInput] = useState("");
     const [filteredDestinations, setFilteredDestinations] = useState([]);
     const [filteredCountries, setFilteredCountries] = useState([]);
+    const [selectedDestinations, setSelectedDestinations] = useState([]);
 
     const fetchDestinations = useGlobalStore((state) => state.fetchDestinations);
     const destinations = useGlobalStore((state) => state.destinations);
@@ -73,8 +74,36 @@ const CreateTrip = () => {
         setFilteredDestinations(filtered);
     };
 
+    const handleSelectDestination = (destination) => {
+        setSelectedDestinations((prevSelected) => [...prevSelected, destination]);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        try {
+            const response = await fetch(`http://localhost:4000/login`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ email, password }),
+            });
+      
+            if (!response.ok) {
+              throw new Error('invalid username of password');
+            }
+      
+            //set session_id in auth store
+            const { token, user } = await response.json();
+            setUser(token, user);
+            await fetchUserItineraries();
+            navigate('/trips');
+      
+          } catch (err) {
+            setError('site could not be reached');
+            console.error('Login error:', err);
+          }
     };
 
     return (
@@ -95,12 +124,12 @@ const CreateTrip = () => {
                 </div>
                 <div className="column">
                     <h2>WHAT TO DO?</h2>
-                    <DestinationList destinations={filteredDestinations} />
+                    <DestinationList destinations={filteredDestinations} onSelectDestination={handleSelectDestination} />
                 </div>
                 <div className="column">
                     <img src={SecondImage}></img>
                     <h2>{tripName ? tripName : "New Itinerary"}</h2>
-                    <DestinationList />
+                    <DestinationList destinations={selectedDestinations} />
                     <SubmitButton buttonText={ "Finalise Itinerary!" } />
                 </div>
             </div>

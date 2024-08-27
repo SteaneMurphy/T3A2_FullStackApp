@@ -1,7 +1,7 @@
 import React from "react";
 
 const ResultsBox = ({ array, customFunc }) => {
-    const HandleClick = (country) => {
+    const handleClick = (country) => {
         customFunc(country);
     };
 
@@ -9,7 +9,7 @@ const ResultsBox = ({ array, customFunc }) => {
         <div className="box scrollable-box">
             {array.length > 0 ? (
                 array.map((country, index) => (
-                    <div key={index} className="box" onClick={() => HandleClick(country)} role="button" tabIndex="0">
+                    <div key={index} className="box" onClick={() => handleClick(country)} role="button" tabIndex="0">
                         <h3>{country}</h3>
                     </div>
                 ))

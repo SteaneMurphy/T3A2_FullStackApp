@@ -1,14 +1,14 @@
 import React from "react";
 import DisplayImage from "./DisplayImage";
 
-const DestinationOverview = ({ destination }) => {
+const DestinationOverview = ({ destination, onSelectDestination }) => {
     
-    const HandleClick = () => {
-        
+    const handleClick = () => {
+        onSelectDestination(destination);
     };
 
     return (
-        <div onClick={() => HandleClick()} role="button" tabIndex="0">
+        <div onClick={() => handleClick()} role="button" tabIndex="0">
             <div className="columns">
                 <div className="column">
                     <DisplayImage data={destination.data} />
