@@ -12,6 +12,7 @@ const useGlobalStore = create((set) => ({
     clearUserSession: () => set({ session_id: null, user: null }),
 
     setCurrentItinerary: (itinerary) => set({ currentItinerary: itinerary }),
+    
     clearCurrentItinerary: () => set({ currentItinerary: null }),
 
     fetchUserItineraries: async () => {
