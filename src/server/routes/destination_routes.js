@@ -1,19 +1,19 @@
 import { Router } from 'express';
 import { Destination } from '../db.js'; 
 import authenticate from '../middleware/authenticate.js'; 
+import authorizeAdmin from '../middleware/authorizeAdmin.js'; // Import the admin authorization middleware
 
 const router = Router();
 
-//## needs admin role ##//
-// Create a new destination (Create)
-// router.post('/destinations', authenticate, async (req, res) => {
-//     try {
-//         const newDestination = await Destination.create({ ...req.body, user: req.user.id });
-//         res.status(201).send(newDestination);
-//     } catch (err) {
-//         res.status(400).send({ error: err.message });
-//     }
-// });
+// Create a new destination - Admin only (Create)
+router.post('/destinations', authenticate, authorizeAdmin, async (req, res) => {
+    try {
+        const newDestination = await Destination.create({ ...req.body, user: req.user.id });
+        res.status(201).send(newDestination);
+    } catch (err) {
+        res.status(400).send({ error: err.message });
+    }
+});
 
 // Get a destination (Read)
 router.get('/destinations/:id', authenticate, async (req, res) => {
@@ -40,7 +40,7 @@ router.get('/destinations', authenticate, async (req, res) => {
 });
 
 // Update a destination details (Update)
-router.put('/destinations/:id', authenticate, async (req, res) => {
+router.put('/destinations/:id', authenticate, authorizeAdmin, async (req, res) => {
     try {
         const destination = await Destination.findByIdAndUpdate(req.params.id, req.body, { returnDocument: 'after' });
         if (destination) {
@@ -54,7 +54,7 @@ router.put('/destinations/:id', authenticate, async (req, res) => {
 });
 
 // Delete an existing destination (Delete)
-router.delete('/destinations/:id', authenticate, async (req, res) => {
+router.delete('/destinations/:id', authenticate, authorizeAdmin, async (req, res) => {
     try {
         const destination = await Destination.findByIdAndDelete(req.params.id);
         if (destination) {
