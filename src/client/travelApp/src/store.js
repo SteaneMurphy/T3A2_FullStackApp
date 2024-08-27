@@ -95,7 +95,7 @@ const useGlobalStore = create((set) => ({
       catch (error) {
         console.error('Failed to fetch destinations:', error);
       }
-    },  
+    },
 }));
 
 export { useGlobalStore };

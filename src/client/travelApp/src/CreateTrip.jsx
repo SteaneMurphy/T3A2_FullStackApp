@@ -8,6 +8,7 @@ import SecondImage from "./assets/createTripSecondImage.webp";
 import SubmitButton from "./components/SubmitButton";
 import { useGlobalStore } from "./store";
 import { apiUrl } from './config.js';
+import { useNavigate } from "react-router-dom";
 
 const countryList = [
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",
@@ -47,9 +48,13 @@ const CreateTrip = () => {
     const [filteredDestinations, setFilteredDestinations] = useState([]);
     const [filteredCountries, setFilteredCountries] = useState([]);
     const [selectedDestinations, setSelectedDestinations] = useState([]);
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const fetchDestinations = useGlobalStore((state) => state.fetchDestinations);
     const destinations = useGlobalStore((state) => state.destinations);
+    const getCurrentSession = useGlobalStore((state) => state.session_id);
+    const fetchUserItineraries = useGlobalStore((state) => state.fetchUserItineraries);
     
 
     useEffect(() => {
@@ -83,57 +88,63 @@ const CreateTrip = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // try {
-        //     const response = await fetch('http://localhost:4000', {
-        //       method: 'POST',
-        //       headers: {
-        //         'Content-Type': 'application/json',
-        //       },
-        //       body: JSON.stringify({ email, password }),
-        //     });
+        const selectedDestinationIds = selectedDestinations.map(destination => destination._id);
+
+        try {
+            const response = await fetch(`${apiUrl}/trips`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getCurrentSession}`
+              },
+              body: JSON.stringify(
+                {
+                    title: tripName, 
+                    destinations: selectedDestinationIds,
+                }),
+            });
       
-        //     if (!response.ok) {
-        //       throw new Error('invalid username of password');
-        //     }
+            if (!response.ok) {
+                const errorData = await response.text();
+                throw new Error(`Server error: ${errorData}`);
+            }
+            
+            const responseData = await response.json();
+
+            await fetchUserItineraries();
+            navigate('/trips');
       
-        //     //set session_id in auth store
-        //     const { token, user } = await response.json();
-        //     setUser(token, user);
-        //     await fetchUserItineraries();
-        //     navigate('/trips');
-      
-        //   } catch (err) {
-        //     setError('site could not be reached');
-        //     console.error('Login error:', err);
-        //   }
+          } catch (err) {
+            setError(error);
+          }
     };
 
     return (
         <>      
             <NavBar />
             <div className="columns">
-                <div className="column">
-                    <h2>WHERE TO?</h2>
-                    <form onSubmit={handleSubmit}>
-                        <p>Itinerary Name</p>
-                        <TripNameField name={tripName} setTripName={setTripName} />
-                        <p>Country</p>
-                        <CountrySelectField input={countryInput} setInput={setCountryInput} />
-                        <p>Destinations</p>
-                        <ResultsBox array={filteredCountries} customFunc={filterDestinationsByCountry} />
-                    </form>
-                    <img src={MainImage}></img>
-                </div>
-                <div className="column">
-                    <h2>WHAT TO DO?</h2>
-                    <DestinationList destinations={filteredDestinations} onSelectDestination={handleSelectDestination} />
-                </div>
-                <div className="column">
-                    <img src={SecondImage}></img>
-                    <h2>{tripName ? tripName : "New Itinerary"}</h2>
-                    <DestinationList destinations={selectedDestinations} />
-                    <SubmitButton buttonText={ "Finalise Itinerary!" } />
-                </div>
+                    <div className="column">
+                        <h2>WHERE TO?</h2>
+                            <p>Itinerary Name</p>
+                            <TripNameField name={tripName} setTripName={setTripName} />
+                            <p>Country</p>
+                            <CountrySelectField input={countryInput} setInput={setCountryInput} />
+                            <p>Destinations</p>
+                            <ResultsBox array={filteredCountries} customFunc={filterDestinationsByCountry} />
+                        <img src={MainImage}></img>
+                    </div>
+                    <div className="column">
+                        <h2>WHAT TO DO?</h2>
+                        <DestinationList destinations={filteredDestinations} onSelectDestination={handleSelectDestination} />
+                    </div>
+                    <div className="column">
+                        <form onSubmit={handleSubmit}>
+                            <img src={SecondImage}></img>
+                            <h2>{tripName ? tripName : "New Itinerary"}</h2>
+                            <DestinationList destinations={selectedDestinations} />
+                            <SubmitButton buttonText={ "Finalise Itinerary!" } />
+                        </form>
+                    </div>
             </div>
         </>
     )

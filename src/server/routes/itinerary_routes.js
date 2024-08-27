@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { Itinerary } from '../db.js';
-import authenticate from '../middleware/authenticate.js'; 
+import authenticate from '../middleware/authenticate.js';
+import fs from 'fs';
 
 const router = Router();
 
@@ -31,7 +32,7 @@ router.get('/trips/:id', authenticate, async (req, res) => {
 // Create a new itinerary
 router.post('/trips', authenticate, async (req, res) => {
     try {
-        const newItinerary = await Itinerary.create({ ...req.body, user: req.user.id });
+        const newItinerary = await Itinerary.create({ ...req.body, data: fs.readFileSync("./assets/parisOverview.jpg"), user: req.user.id });
         res.status(201).send(newItinerary);
     } catch (err) {
         res.status(400).send({ error: err.message });
