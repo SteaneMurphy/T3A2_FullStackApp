@@ -1,9 +1,5 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Polyline, Popup } from 'react-leaflet';
-
-const TravelMap = ({ locations }) => {
-    const defaultCenter = [-37.8136, 144.9631];
-    const center = locations.length ? [locations[0].lat, locations[0].lng] : defaultCenter;
+import React from "react";
+import MapImage from "../assets/mapTemp.PNG";
 
     return (
         <MapContainer center={center} zoom={5} style={{ height: "100%", width: "100%" }}>

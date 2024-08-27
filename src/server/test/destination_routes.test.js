@@ -21,34 +21,15 @@ describe('Destination Routes', () => {
         token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     });
 
-
-
-    //## needs admin role before testing ##//
-    // it('should create a new destination', async () => {
-    //     const response = await request(app)
-    //         .post('/destinations')
-    //         .set('Authorization', `Bearer ${token}`)
-    //         .send({
-    //             name: 'Test Destination',
-    //             location: 'Test Location',
-    //             description: 'A test description',
-    //             data: fs.readFileSync("./assets/test3.jpg")
-    //         });
-
-    //     expect(response.statusCode).toBe(201);
-    //     expect(response.body).toHaveProperty('_id');
-    //     expect(response.body.name).toBe('Test Destination');
-    // });
-
     it('should get all destinations', async () => {
         const response = await request(app)
             .get('/destinations')
             .set('Authorization', `Bearer ${token}`)
 
-        expect(response.statusCode).toBe(200);                       //test that route works and returns something
-        expect(response.body).toBeInstanceOf(Array);                 //test that array is returned
-        expect(response.body.length).toEqual(20);                     //test that amount of items in array matches destinations
-        destinationId = response.body[0]._id;                        //grab the first id for use in the second test    
+        expect(response.statusCode).toBe(200);                       
+        expect(response.body).toBeInstanceOf(Array);                 
+        expect(response.body.length).toEqual(20);                     
+        destinationId = response.body[0]._id;                        
     });
 
     it('should get a single destination', async () => {
@@ -56,11 +37,12 @@ describe('Destination Routes', () => {
             .get(`/destinations/${destinationId}`)
             .set('Authorization', `Bearer ${token}`)
 
-        expect(response.statusCode).toBe(200);                       //test that route works and returns something
-        expect(response.body).toBeInstanceOf(Object);                //test that object is returned
-        expect(response.body).toHaveProperty('_id');                 //test object has correct properties
+        expect(response.statusCode).toBe(200);                       
+        expect(response.body).toBeInstanceOf(Object);                
+        expect(response.body).toHaveProperty('_id');                 
         expect(response.body).toHaveProperty('name');
-        expect(response.body).toHaveProperty('location');
+        expect(response.body).toHaveProperty('destination');
+        expect(response.body).toHaveProperty('country');
         expect(response.body).toHaveProperty('description');
         expect(response.body).toHaveProperty('data');
         expect(response.body).toHaveProperty('createdAt');
@@ -73,18 +55,20 @@ describe('Destination Routes', () => {
             .set('Authorization', `Bearer ${token}`)
             .send({
                 name: 'updated name',
-                location: 'updated location',
+                destination: 'updated destination',
+                country: 'updated country',
                 description: 'updated description',
             });
 
-            expect(response.statusCode).toBe(200);                       //test that route works and returns something
-            expect(response.body).toBeInstanceOf(Object);                //test that object is returned
-            expect(response.body).toHaveProperty('_id');                 //test object has updated properties
-            expect(response.body).toHaveProperty('name', 'updated name');
-            expect(response.body).toHaveProperty('location', 'updated location');
-            expect(response.body).toHaveProperty('description', 'updated description');
-            expect(response.body).toHaveProperty('data');
-            expect(response.body).toHaveProperty('createdAt');
-            expect(response.body).toHaveProperty('updatedAt');
+        expect(response.statusCode).toBe(200);                       
+        expect(response.body).toBeInstanceOf(Object);                
+        expect(response.body).toHaveProperty('_id');                 
+        expect(response.body).toHaveProperty('name', 'updated name');
+        expect(response.body).toHaveProperty('destination', 'updated destination');
+        expect(response.body).toHaveProperty('country', 'updated country');
+        expect(response.body).toHaveProperty('description', 'updated description');
+        expect(response.body).toHaveProperty('data');
+        expect(response.body).toHaveProperty('createdAt');
+        expect(response.body).toHaveProperty('updatedAt');
     });
 });
