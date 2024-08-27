@@ -1,6 +1,5 @@
 import { create } from 'zustand';
-
-const apiBase = process.env.REACT_APP_API_URL;
+import { apiUrl } from './config.js';
 
 const useGlobalStore = create((set) => ({
     session_id: null,
@@ -21,7 +20,7 @@ const useGlobalStore = create((set) => ({
       }
   
       try {
-        const response = await fetch(`${apiBase}/trips`, {
+        const response = await fetch(`${apiUrl}/trips`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -51,7 +50,7 @@ const useGlobalStore = create((set) => ({
     addUser: async (firstName, lastName, email, password) => {
       const newUserEntry = { firstName, lastName, email, password };
 
-      const response = await fetch(`${apiBase}/register`, {
+      const response = await fetch(`${apiUrl}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +71,7 @@ const useGlobalStore = create((set) => ({
       const { session_id } = useGlobalStore.getState();
 
       try {
-        const response = await fetch(`${apiBase}/destinations`, {
+        const response = await fetch(`${apiUrl}/destinations`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

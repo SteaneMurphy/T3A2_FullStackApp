@@ -7,8 +7,10 @@ import EmailField from "./components/EmailField.jsx";
 import PasswordField from "./components/PasswordField.jsx";
 import SubmitButton from "./components/SubmitButton.jsx";
 import ErrorField from "./components/ErrorField.jsx";
+import { apiUrl } from './config.js';
 
 const Login = () => {
+    
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -25,7 +27,7 @@ const Login = () => {
       }
   
       try {
-        const response = await fetch(process.env.REACT_APP_API_URL, {
+        const response = await fetch(`${apiUrl}/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

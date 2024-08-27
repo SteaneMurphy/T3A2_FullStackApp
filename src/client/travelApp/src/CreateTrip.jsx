@@ -7,6 +7,7 @@ import MainImage from "./assets/createTripMainImage.webp";
 import SecondImage from "./assets/createTripSecondImage.webp";
 import SubmitButton from "./components/SubmitButton";
 import { useGlobalStore } from "./store";
+import { apiUrl } from './config.js';
 
 const countryList = [
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",
@@ -40,6 +41,7 @@ const countryList = [
 ];
 
 const CreateTrip = () => {
+
     const [tripName, setTripName] = useState("");
     const [countryInput, setCountryInput] = useState("");
     const [filteredDestinations, setFilteredDestinations] = useState([]);
@@ -81,29 +83,29 @@ const CreateTrip = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            const response = await fetch(`http://localhost:4000/login`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ email, password }),
-            });
+        // try {
+        //     const response = await fetch('http://localhost:4000', {
+        //       method: 'POST',
+        //       headers: {
+        //         'Content-Type': 'application/json',
+        //       },
+        //       body: JSON.stringify({ email, password }),
+        //     });
       
-            if (!response.ok) {
-              throw new Error('invalid username of password');
-            }
+        //     if (!response.ok) {
+        //       throw new Error('invalid username of password');
+        //     }
       
-            //set session_id in auth store
-            const { token, user } = await response.json();
-            setUser(token, user);
-            await fetchUserItineraries();
-            navigate('/trips');
+        //     //set session_id in auth store
+        //     const { token, user } = await response.json();
+        //     setUser(token, user);
+        //     await fetchUserItineraries();
+        //     navigate('/trips');
       
-          } catch (err) {
-            setError('site could not be reached');
-            console.error('Login error:', err);
-          }
+        //   } catch (err) {
+        //     setError('site could not be reached');
+        //     console.error('Login error:', err);
+        //   }
     };
 
     return (
