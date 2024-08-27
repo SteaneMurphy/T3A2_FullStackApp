@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-const apiBase = process.env.REACT_APP_API_URL;
+const apiBase = import.meta.env.REACT_APP_API_URL;
 
 const useGlobalStore = create((set) => ({
     session_id: null,
@@ -11,6 +11,9 @@ const useGlobalStore = create((set) => ({
     setUserSession: (token, user) => set({ session_id: token, user: user }),
 
     clearUserSession: () => set({ session_id: null, user: null }),
+
+    setCurrentItinerary: (itinerary) => set({ currentItinerary: itinerary }),
+    clearCurrentItinerary: () => set({ currentItinerary: null }),
 
     fetchUserItineraries: async () => {
       const { session_id, user } = useGlobalStore.getState();
