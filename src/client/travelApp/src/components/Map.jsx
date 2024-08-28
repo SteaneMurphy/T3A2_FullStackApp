@@ -1,12 +1,17 @@
+//modules
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Polyline, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const TravelMap = ({ locations }) => {
-  // Default center should be adjusted based on your requirements
-  const defaultCenter = [40.7128, -74.0060]; // Center around New York City as an example
-  const center = locations.length > 0 
-    ? [locations[0].lat, locations[0].lng] 
+
+  //default center is NY
+  const defaultCenter = [40.7128, -74.0060];
+
+  //centers the map around the first destination in the itinerary
+  //else use default center point
+  const center = locations.length > 0 ? 
+    [locations[0].latitude, locations[0].longitude] 
     : defaultCenter;
 
   return (
@@ -15,15 +20,17 @@ const TravelMap = ({ locations }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; OpenStreetMap contributors'
       />
+      {/* For each destination, put a marker on the map using the long/lat properties */}
       {locations.map((location, index) => (
-        <Marker key={index} position={[location.lat, location.lng]}>
+        <Marker key={index} position={[location.latitude, location.longitude]}>
           <Popup>
             <h3>{location.name}</h3>
             <p>{location.description}</p>
           </Popup>
         </Marker>
       ))}
-      <Polyline positions={locations.map(({ lat, lng }) => [lat, lng])} color="blue" />
+      {/* For each destination draw a line between each marker */}
+      <Polyline positions={locations.map(location => [location.latitude, location.longitude])} color="blue" />
     </MapContainer>
   );
 };

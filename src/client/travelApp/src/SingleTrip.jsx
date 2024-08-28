@@ -47,6 +47,8 @@ const SingleTrip = () => {
     Object.values(fetchDestinations).find((y) => y._id === x)
   );
 
+  console.log(displayDestinations);
+
   return (
     <>
       <NavBar />
@@ -60,7 +62,7 @@ const SingleTrip = () => {
           <DestinationDescription destination={selectedDestination} />
         </div>
         <div className="column">
-          <TravelMap locations={locations} />
+          <TravelMap locations={displayDestinations} />
           <SubmitButton buttonText={"Edit Itinerary!"} />
         </div>
       </div>
