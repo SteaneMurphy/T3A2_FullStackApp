@@ -267,7 +267,7 @@ async function seed() {
             {
                 user: createdUsers[1]._id,
                 title: 'New York Adventure',
-                destinations: [createdDestinations[2]._id, createdDestinations[3]._id],
+                destinations: [createdDestinations[10]._id, createdDestinations[11]._id],
                 activities: ['Sightseeing', 'Park Walk'],
                 notes: ['Bring a camera'],
                 data: fs.readFileSync("./assets/nyOverview.jpg")
@@ -275,7 +275,7 @@ async function seed() {
             {
                 user: createdUsers[1]._id,
                 title: 'New York Adventure 2',
-                destinations: [createdDestinations[2]._id, createdDestinations[3]._id],
+                destinations: [createdDestinations[12]._id, createdDestinations[13]._id],
                 activities: ['Sightseeing', 'Park Walk'],
                 notes: ['Bring a camera'],
                 data: fs.readFileSync("./assets/nyOverview.jpg")

@@ -3,7 +3,7 @@ import React from "react";
 
 const PasswordField = ({ password, setPassword }) => {
     return (
-        <div className="field">
+        <div className="field login-field">
             <p className="control has-icons-left">
             <input
                 className="input"

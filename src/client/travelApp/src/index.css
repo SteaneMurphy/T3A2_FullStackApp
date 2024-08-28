@@ -1,5 +1,22 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css";
 
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    /* background-color: #ffffff;
+    height: 100vh; */
+}
+  
+/* body {
+background-color: #ffffff;
+}
+
+html{
+background-color: #ffffff;
+} */
+
 h1 {
     font-size: 2rem;
 }
@@ -13,4 +30,43 @@ h1 {
     max-height: 80vh;
     overflow-y: auto;
     overflow-x: hidden;
-  }
+}
+
+/* .input {
+    background-color: #f5f5f5; 
+    border-color: #b0b0b0; 
+    color: #3f72af; 
+}
+  
+.input:focus {
+border-color: #3f72af; 
+box-shadow: 0 0 0 0.125rem #3f71af46; 
+}
+
+video{
+    height: 100%;
+}
+
+.has-icons-left{
+    width: 50%;
+
+}
+
+.login-field{
+    display: flex;
+    justify-content: center;
+}
+
+.socials-parent{
+    display: flex;
+    justify-content: center;
+}
+
+.socials{
+    width:40%;
+}
+
+.signin{
+    display: flex;
+    justify-content: center;
+} */ 

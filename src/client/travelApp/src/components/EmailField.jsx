@@ -5,7 +5,7 @@ const EmailField = ({ email, setEmail }) =>
 {
 
     return (
-        <div className="field">
+        <div className="field login-field">
             <p className="control has-icons-left has-icons-right">
             <input
                 className="input"

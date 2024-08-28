@@ -47,8 +47,6 @@ const SingleTrip = () => {
     Object.values(fetchDestinations).find((y) => y._id === x)
   );
 
-  console.log(displayDestinations);
-
   return (
     <>
       <NavBar />
