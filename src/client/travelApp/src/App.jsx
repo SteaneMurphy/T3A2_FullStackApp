@@ -1,11 +1,15 @@
+//modules
 import { Routes, Route } from "react-router-dom";
 import './App.css';
+
+//components
 import Login from './Login';
 import Register from './Register';
 import ShowTrips from './ShowTrips';
 import CreateTrip from './CreateTrip';
 import SingleTrip from './SingleTrip';
 
+//main application routes
 const App = () => {
   return (
     <>

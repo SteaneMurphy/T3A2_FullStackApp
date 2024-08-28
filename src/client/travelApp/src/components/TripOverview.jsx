@@ -1,11 +1,21 @@
+//modules
 import React from "react";
-import DisplayImage from "./DisplayImage";
 import { useNavigate } from "react-router-dom";
 
-const TripOverview = ({ trip }) => {
-    const { title, notes, data } = trip;
+//components
+import DisplayImage from "./DisplayImage";
+
+const TripOverview = ({ trip }) => 
+{
+    //instances
     const navigate = useNavigate();
 
+    //destructure trip properties
+    const { title, notes, data } = trip;
+    
+    //when user clicks this tile, navigate 
+    //to the single itinerary page with this
+    //trip ID
     const handleClick = () => {
         navigate(`/trips/${trip._id}`);
     };

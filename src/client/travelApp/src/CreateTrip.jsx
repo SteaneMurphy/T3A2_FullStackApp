@@ -1,15 +1,19 @@
+//modules
 import React, { useState, useEffect } from "react";
-import NavBar from "./NavBar";
 import { CountrySelectField, TripNameField } from "./components/NameField";
+import { useGlobalStore } from "./store";
+import { apiUrl } from './config.js';
+import { useNavigate } from "react-router-dom";
+
+//components
+import NavBar from "./NavBar";
 import DestinationList from "./components/DestinationList";
 import ResultsBox from "./components/ResultsBox";
 import MainImage from "./assets/createTripMainImage.webp";
 import SecondImage from "./assets/createTripSecondImage.webp";
 import SubmitButton from "./components/SubmitButton";
-import { useGlobalStore } from "./store";
-import { apiUrl } from './config.js';
-import { useNavigate } from "react-router-dom";
 
+//temp country list - to add to database or backend
 const countryList = [
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",
     "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",
@@ -42,56 +46,96 @@ const countryList = [
 ];
 
 const CreateTrip = () => {
-
-    const [tripName, setTripName] = useState("");
-    const [countryInput, setCountryInput] = useState("");
-    const [filteredDestinations, setFilteredDestinations] = useState([]);
-    const [filteredCountries, setFilteredCountries] = useState([]);
-    const [selectedDestinations, setSelectedDestinations] = useState([]);
-    const [error, setError] = useState("");
+    //instances
     const navigate = useNavigate();
 
-    const fetchDestinations = useGlobalStore((state) => state.fetchDestinations);
-    const destinations = useGlobalStore((state) => state.destinations);
-    const getCurrentSession = useGlobalStore((state) => state.session_id);
-    const fetchUserItineraries = useGlobalStore((state) => state.fetchUserItineraries);
-    
+    //local state get/set
+    const [tripName, setTripName] = useState("");                                               //user input - itinerary name
+    const [countryInput, setCountryInput] = useState("");                                       //user input - country filter
+    const [filteredDestinations, setFilteredDestinations] = useState([]);                       //destinations to display from filter
+    const [filteredCountries, setFilteredCountries] = useState([]);                             //countries to display from filter
+    const [selectedDestinations, setSelectedDestinations] = useState([]);                       //destinations added to unsaved itinerary
+    const [error, setError] = useState("");                                                     //stored current error
 
+    //global state
+    const fetchUserItineraries = useGlobalStore((state) => state.fetchUserItineraries);         //fetchUserItineraries function
+    const fetchDestinations = useGlobalStore((state) => state.fetchDestinations);               //fetchDestinations function
+    const destinations = useGlobalStore((state) => state.destinations);                         //destinations list
+    const getCurrentSession = useGlobalStore((state) => state.session_id);                      //stored auth token 
+    
+    //populate destination in global store, run once on first mount
     useEffect(() => {
         fetchDestinations();
     }, []);
 
-    useEffect(() => {
+    /* 
+        This useEffect checks for any change in state in the 
+            CountrySelectField component.
+        This input looks for partial matches within the list of
+            countries (countryList) and displays however many countries
+            make a match.
+        The trim function ensures that nothing is displayed in the ResultsBox
+            component if input is empty.
+    */
+    useEffect(() => 
+    {
         let result = [];
-        if (countryInput.trim() === "") {
+
+        if (countryInput.trim() === "") 
+        {
             result = [];
-        } else {
+        } 
+        else 
+        {
             result = countryList.filter(country =>
                 country.toLowerCase().includes(countryInput.toLowerCase())
             );
         }
+
         setFilteredCountries(result);
     }, [countryInput]);
 
+    /* 
+        Function is called when a user clicks on a tile within the country
+            results box.
+        Country name is returned and checked against list of destinations
+            (country property).
+        The filteredDestination state is populated by each match on the country
+            property and is displayed in the DestinationList component.
+    */
     const filterDestinationsByCountry = (country) => {
         const destinationsArray = Object.values(destinations);
-        const filtered = destinationsArray.filter(destination =>
-            destination.country.toLowerCase() === country.toLowerCase()
-        );
+        const filtered = destinationsArray.filter(destination => destination.country.toLowerCase() === country.toLowerCase());
         setFilteredDestinations(filtered);
     };
 
+    /*
+        Callback function when a user clicks on a destination tile.
+        The selectedDestinations local state is updated each time a time is clicked.
+        The updated selectedDestinations state combines the existing state with the new destination
+            to be added.
+    */
     const handleSelectDestination = (destination) => {
         setSelectedDestinations((prevSelected) => [...prevSelected, destination]);
     };
 
-    const handleSubmit = async (e) => {
+    /* 
+        Handles form submission.
+        Takes all destinations selected by user stored in temp state.
+        Send state as a POST request to itinerary creation API.
+        New itinerary added to database.
+        Form submission triggered by the 'Finalise Itinerary' button.
+    */
+    const handleSubmit = async (e) => 
+    {
         e.preventDefault();
 
         const selectedDestinationIds = selectedDestinations.map(destination => destination._id);
 
-        try {
-            const response = await fetch(`${apiUrl}/trips`, {
+        try 
+        {
+            const response = await fetch(`${apiUrl}/trips`, 
+            {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -104,7 +148,8 @@ const CreateTrip = () => {
                 }),
             });
       
-            if (!response.ok) {
+            if (!response.ok) 
+            {
                 const errorData = await response.text();
                 throw new Error(`Server error: ${errorData}`);
             }
@@ -114,7 +159,9 @@ const CreateTrip = () => {
             await fetchUserItineraries();
             navigate('/trips');
       
-          } catch (err) {
+          } 
+          catch (err) 
+          {
             setError(error);
           }
     };
@@ -122,21 +169,28 @@ const CreateTrip = () => {
     return (
         <>      
             <NavBar />
+            {/* Divide page into three columns */}
             <div className="columns">
+
+                    {/* Country/destination select filter - Left side */}
                     <div className="column">
                         <h2>WHERE TO?</h2>
-                            <p>Itinerary Name</p>
-                            <TripNameField name={tripName} setTripName={setTripName} />
-                            <p>Country</p>
-                            <CountrySelectField input={countryInput} setInput={setCountryInput} />
-                            <p>Destinations</p>
-                            <ResultsBox array={filteredCountries} customFunc={filterDestinationsByCountry} />
+                        <p>Itinerary Name</p>
+                        <TripNameField name={tripName} setTripName={setTripName} />
+                        <p>Country</p>
+                        <CountrySelectField input={countryInput} setInput={setCountryInput} />
+                        <p>Destinations</p>
+                        <ResultsBox array={filteredCountries} customFunc={filterDestinationsByCountry} />
                         <img src={MainImage}></img>
                     </div>
+
+                    {/* List of destinations based on country filter - Middle */}
                     <div className="column">
                         <h2>WHAT TO DO?</h2>
                         <DestinationList destinations={filteredDestinations} onSelectDestination={handleSelectDestination} />
                     </div>
+
+                    {/* Unsaved Itinerary - Right side */}
                     <div className="column">
                         <form onSubmit={handleSubmit}>
                             <img src={SecondImage}></img>

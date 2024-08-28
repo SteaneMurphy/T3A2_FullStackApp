@@ -1,6 +1,9 @@
+//modules
 import React from "react";
 
 const ResultsBox = ({ array, customFunc }) => {
+
+    //pass the country variable to the parent function 'filterDestinationsByCountry'
     const handleClick = (country) => {
         customFunc(country);
     };

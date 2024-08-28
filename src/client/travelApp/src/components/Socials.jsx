@@ -1,4 +1,7 @@
+//modules
 import React from "react";
+
+//images
 import Google from "../assets/google.svg";
 import Twitter from "../assets/twitter.svg";
 import Apple from "../assets/apple.svg";

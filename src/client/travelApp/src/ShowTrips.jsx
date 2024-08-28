@@ -1,12 +1,23 @@
-import React, { useEffect } from "react";
+//modules
+import React from "react";
 import { Link } from "react-router-dom";
 import { useGlobalStore } from "./store";
+
+//components
 import NavBar from "./NavBar";
 import SubmitButton from "./components/SubmitButton";
 import MainImage from "./assets/allTripsMainImage.webp";
 import TripOverview from "./components/TripOverview";
 
-const ShowTrips = () => {   
+const ShowTrips = () => {
+
+    /*
+        Retrieves the stored user itineraries from the global state
+            and displays them.
+        For each itinerary found in allTrips, the TripOverview component
+            is instantiated, and the itinerary information passed to
+            this component.
+    */
     const allTrips = useGlobalStore((state) => state.itineraries);
 
     return (
@@ -15,11 +26,17 @@ const ShowTrips = () => {
             <div className="columns">
                 <div className="column">
                     <h2>Your Itineraries</h2>
-                    {Object.keys(allTrips).length > 0 ? (
-                        Object.keys(allTrips).map((id) => (
+                    {/* If allTrips is not empty */}
+                    {Object.keys(allTrips).length > 0 ? 
+                    (
+                        //For each itinerary in allTrips
+                        Object.keys(allTrips).map((id) => 
+                        (
+                            //Display the itinerary
                             <TripOverview key={id} trip={allTrips[id]} />
                         ))
-                    ) : (
+                    ) : 
+                    (
                         <p>No trips available</p>
                     )}
                 </div>

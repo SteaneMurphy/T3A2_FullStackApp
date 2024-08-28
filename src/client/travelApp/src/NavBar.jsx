@@ -1,7 +1,9 @@
+//modules
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = () => 
+{
     return (
         <>
             <nav className="navbar is-dark" role="navigation" aria-label="main navigation">

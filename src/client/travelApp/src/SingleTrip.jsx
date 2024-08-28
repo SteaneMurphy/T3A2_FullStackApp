@@ -1,27 +1,48 @@
-import React, { useEffect, useState } from "react";
+//modules
+import React, { useState } from "react";
+import { useGlobalStore } from './store';
+import { useParams } from 'react-router-dom';
+
+//components
 import NavBar from "./NavBar";
 import DestinationList from "./components/DestinationList";
 import DestinationDescription from "./components/DestinationDescription";
 import TravelMap from "./components/Map";
 import SubmitButton from "./components/SubmitButton";
-import { useGlobalStore } from './store';
-import { useParams } from 'react-router-dom';
-import { apiUrl } from './config.js';
+
 
 const SingleTrip = () => {
-  const { id } = useParams();
-  const fetchItineraries = useGlobalStore((state) => state.itineraries);
-  const fetchDestinations = useGlobalStore((state) => state.destinations);
-  
-  const [selectedDestination, setSelectedDestination] = useState({});
 
-  const handleSelectDestination = (destination) => {
+  //store the current itinerary ID from the URL
+  const { id } = useParams();
+
+  //global state
+  const fetchItineraries = useGlobalStore((state) => state.itineraries);      //fetchItineraries function
+  const fetchDestinations = useGlobalStore((state) => state.destinations);    //fetchDestinations function
+  
+  //local state get/set
+  const [selectedDestination, setSelectedDestination] = useState({});         //current clicked destination tile
+
+  /* 
+      Callback function for when a user clicks on a destination tile.
+      This function sends the destination object to selectedDestination local
+        state. The DestinationDescription component updates based on this variable. 
+      The goal of this functionality is to display a detailed description
+        of the selected destination in the itinerary.
+  */
+  const handleSelectDestination = (destination) => 
+  {
     setSelectedDestination(() => destination);
   };
 
-  // Find the current itinerary
+  //using the ID from params, find the correct itinerary object from the global state that matches
   const currentItinerary = Object.values(fetchItineraries).find(itinerary => itinerary._id === id);
 
+  /* 
+      Searches the destinations global state for matching destination IDs.
+      When found, the destination object is stored and sent to DestinationList
+        component for display.
+  */
   let displayDestinations = currentItinerary.destinations.map((x) => 
     Object.values(fetchDestinations).find((y) => y._id === x)
   );
@@ -39,7 +60,7 @@ const SingleTrip = () => {
           <DestinationDescription destination={selectedDestination} />
         </div>
         <div className="column">
-          {/*<TravelMap locations={locations} />*/}
+          <TravelMap locations={locations} />
           <SubmitButton buttonText={"Edit Itinerary!"} />
         </div>
       </div>

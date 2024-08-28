@@ -1,6 +1,8 @@
+//modules
 import React from "react";
 
-const EmailField = ({ email, setEmail }) => {
+const EmailField = ({ email, setEmail }) => 
+{
 
     return (
         <div className="field">

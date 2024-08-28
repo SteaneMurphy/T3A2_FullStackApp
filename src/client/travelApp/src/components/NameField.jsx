@@ -1,5 +1,7 @@
+//modules
 import React from "react";
 
+//first name input
 const FirstNameField = ({ name, setFirstName }) => {
     return (
         <>
@@ -19,6 +21,7 @@ const FirstNameField = ({ name, setFirstName }) => {
     )
 };
 
+//last name input
 const LastNameField = ({ name, setLastName }) => {
     return (
         <>
@@ -38,6 +41,7 @@ const LastNameField = ({ name, setLastName }) => {
     )
 };
 
+//itinerary name input
 const TripNameField = ({ name, setTripName }) => {
     return (
         <>
@@ -57,6 +61,7 @@ const TripNameField = ({ name, setTripName }) => {
     )
 };
 
+//country name input
 const CountrySelectField = ({ input, setInput }) => {
     return (
         <>

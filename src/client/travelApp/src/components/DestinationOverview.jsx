@@ -1,8 +1,11 @@
+//modules
 import React from "react";
 import DisplayImage from "./DisplayImage";
 
 const DestinationOverview = ({ destination, onSelectDestination }) => {
     
+    //when user clicks this component
+    //call the 'onSelectDestination' function in the parent component
     const handleClick = () => {
         onSelectDestination(destination);
     };
