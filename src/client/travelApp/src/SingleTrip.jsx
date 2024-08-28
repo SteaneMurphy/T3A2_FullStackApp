@@ -64,22 +64,25 @@ const SingleTrip = () => {
   return (
     <>
       <NavBar />
-      <div className="columns">
-        <div className="column">
-          <h2>{currentItinerary.name}</h2>
+      <div className="columns single-trip-page">
+        <div className="column is-one-quarter itinerary-column">
+          <h2 className="itinerary-title">{currentItinerary.name}</h2>
           <DestinationList destinations={currentItinerary.destinations} />
         </div>
-        <div className="column">
-          <h2>Destination Details</h2>
+        <div className="column is-half destination-column">
+          <h2 className="destination-title">Destination Details</h2>
           <DestinationDescription destinations={currentItinerary.destinations} />
         </div>
-        <div className="column">
+        <div className="column is-one-quarter map-column">
           <TravelMap locations={locations} />
-          <SubmitButton buttonText={"Edit Itinerary!"} />
+          <div className="edit-itinerary">
+            <SubmitButton buttonText={"Edit Itinerary!"} />
+          </div>
         </div>
       </div>
     </>
   );
 };
+
 
 export default SingleTrip;

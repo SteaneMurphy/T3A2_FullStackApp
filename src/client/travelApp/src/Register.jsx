@@ -35,24 +35,26 @@ const Register = () => {
     };
 
     return (
-        <div className="columns">
-          <div className="column">
-            <Socials />
-            <form onSubmit={handleSubmit}>
-              <FirstNameField name={firstName} setFirstName={setFirstName} />  
-              <LastNameField name={lastName} setLastName={setLastName} /> 
-              <EmailField email={email} setEmail={setEmail} />
-              <PasswordField password={password} setPassword={setPassword} />
-              <ErrorField error={error} />
-              <SubmitButton buttonText={ "Sign Up" } />
-              <p> Already have an account? <Link to="/login">Sign In</Link></p>
-            </form>
+      <div className="columns register-page">
+          <div className="column is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
+              <Socials />
+              <form onSubmit={handleSubmit} className="register-form">
+                  <FirstNameField name={firstName} setFirstName={setFirstName} />
+                  <LastNameField name={lastName} setLastName={setLastName} />
+                  <EmailField email={email} setEmail={setEmail} />
+                  <PasswordField password={password} setPassword={setPassword} />
+                  <ErrorField error={error} />
+                  <SubmitButton buttonText="Sign Up" />
+                  <p>Already have an account? <Link to="/login">Sign In</Link></p>
+              </form>
           </div>
-          <div className="column">
-            <VideoPlayer />
+          <div className="column is-half is-hidden-touch custom-tablet-hide">
+              <div className="video-background-container">
+                  <VideoPlayer />
+              </div>
           </div>
-        </div>
-    )
+      </div>
+  );
 };
 
 export default Register;

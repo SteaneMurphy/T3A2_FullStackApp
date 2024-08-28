@@ -36,38 +36,50 @@ const Login = () => {
         });
   
         if (!response.ok) {
-          throw new Error('invalid username of password');
+          throw new Error('Invalid username or password');
         }
   
-        //set session_id in auth store
         const { token, user } = await response.json();
         setUser(token, user);
         await fetchUserItineraries();
         navigate('/trips');
   
       } catch (err) {
-        setError('site could not be reached');
+        setError('Site could not be reached');
         console.error('Login error:', err);
       }
     };
     
     return (
-        <div className="columns">
-          <div className="column">
+      <div className="columns is-vcentered is-fullheight login-page">
+        <div className="column is-half is-hidden-touch custom-tablet-hide">
+          <div className="video-container">
             <VideoPlayer />
           </div>
-          <div className="column">
-            <Socials />
-            <form onSubmit={handleSubmit}>
-              <EmailField email={email} setEmail={setEmail} />
-              <PasswordField password={password} setPassword={setPassword} />
-              <ErrorField error={error} />
-              <SubmitButton buttonText={ "Sign In" } />
-              <p> Don't have an account yet? <Link to="/register">Sign Up</Link></p>
-            </form>
-          </div>
         </div>
-     )
-  };
-  
+        <div className="column is-half is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
+          <Socials />
+          <div className="divider">
+            <span className="or-text">OR</span>
+          </div>
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="field">
+            <label className="label">E-Mail Address</label>
+            <EmailField email={email} setEmail={setEmail} />
+          </div>
+          <div className="field">
+            <label className="label">Password</label>
+            <PasswordField password={password} setPassword={setPassword} />
+          </div>
+          <ErrorField error={error} />
+          <SubmitButton buttonText={"Sign In"} />
+        </form>
+          <p className="mt-4">
+            Don&apos;t have an account yet? <Link to="/register" className="has-text-primary">Sign Up</Link>
+          </p>
+        </div>
+      </div>
+   );
+};
+
 export default Login;

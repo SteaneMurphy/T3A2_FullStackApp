@@ -122,32 +122,47 @@ const CreateTrip = () => {
     return (
         <>      
             <NavBar />
-            <div className="columns">
-                    <div className="column">
-                        <h2>WHERE TO?</h2>
-                            <p>Itinerary Name</p>
+            <div className="container mt-5">
+                <div className="columns">
+                    <div className="column is-one-third">
+                        <h2 className="title is-4">WHERE TO?</h2>
+                        <div className="field">
+                            <label className="label">Itinerary Name</label>
                             <TripNameField name={tripName} setTripName={setTripName} />
-                            <p>Country</p>
+                        </div>
+                        <div className="field">
+                            <label className="label">Country</label>
                             <CountrySelectField input={countryInput} setInput={setCountryInput} />
-                            <p>Destinations</p>
+                        </div>
+                        <div className="field">
+                            <label className="label">Destinations</label>
                             <ResultsBox array={filteredCountries} customFunc={filterDestinationsByCountry} />
-                        <img src={MainImage}></img>
+                        </div>
+                        <figure className="image mt-4">
+                            <img src={MainImage} alt="Main Visual" />
+                        </figure>
                     </div>
-                    <div className="column">
-                        <h2>WHAT TO DO?</h2>
+                    <div className="column is-one-third">
+                        <h2 className="title is-4">WHAT TO DO?</h2>
                         <DestinationList destinations={filteredDestinations} onSelectDestination={handleSelectDestination} />
                     </div>
-                    <div className="column">
-                        <form onSubmit={handleSubmit}>
-                            <img src={SecondImage}></img>
-                            <h2>{tripName ? tripName : "New Itinerary"}</h2>
+                    <div className="column is-one-third">
+                        <form onSubmit={handleSubmit} className="box">
+                            <figure className="image mb-4">
+                                <img src={SecondImage} alt="Second Visual" />
+                            </figure>
+                            <h2 className="title is-5">{tripName ? tripName : "New Itinerary"}</h2>
                             <DestinationList destinations={selectedDestinations} />
-                            <SubmitButton buttonText={ "Finalise Itinerary!" } />
+                            <div className="field mt-4">
+                                <SubmitButton buttonText={"Finalise Itinerary!"} />
+                            </div>
                         </form>
                     </div>
+                </div>
             </div>
         </>
-    )
+    );
 };
+
 
 export default CreateTrip;
