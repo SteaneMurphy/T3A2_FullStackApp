@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import DestinationOverview from "./DestinationOverview";
-import { useGlobalStore } from "../store";
 
 const DestinationList = ({ destinations = [], onSelectDestination }) => {
 

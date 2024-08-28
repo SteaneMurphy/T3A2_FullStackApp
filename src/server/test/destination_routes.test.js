@@ -78,6 +78,8 @@ describe('Destination Routes', () => {
         expect(response.body).toHaveProperty('destination', 'Paris');
         expect(response.body).toHaveProperty('country', 'France');
         expect(response.body.description).toContain('an iconic symbol of Paris'); // More stable substring
+        expect(response.body).toHaveProperty('longitude');
+        expect(response.body).toHaveProperty('latitude');
         expect(response.body).toHaveProperty('createdAt');
         expect(response.body).toHaveProperty('updatedAt');
     });

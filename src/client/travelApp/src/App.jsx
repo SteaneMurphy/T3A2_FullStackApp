@@ -7,8 +7,6 @@ import CreateTrip from './CreateTrip';
 import SingleTrip from './SingleTrip';
 
 const App = () => {
-
-  
   return (
     <>
       <Routes>

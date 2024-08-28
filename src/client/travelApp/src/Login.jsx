@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalStore } from './store.js';
 import VideoPlayer from "./components/VideoPlayer.jsx";
@@ -18,6 +18,8 @@ const Login = () => {
     const fetchUserItineraries = useGlobalStore((state) => state.fetchUserItineraries);
     const navigate = useNavigate();
   
+    const fetchDestinations = useGlobalStore((state) => state.fetchDestinations);
+
     const handleSubmit = async (e) => {
       e.preventDefault();
   
@@ -43,6 +45,7 @@ const Login = () => {
         const { token, user } = await response.json();
         setUser(token, user);
         await fetchUserItineraries();
+        await fetchDestinations();
         navigate('/trips');
   
       } catch (err) {

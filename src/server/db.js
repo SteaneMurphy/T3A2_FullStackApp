@@ -35,6 +35,8 @@ const destinationSchema = new mongoose.Schema({
     description: { type: String },
     createdAt: { type: Date, default: Date.now },
     data: { type: Buffer },
+    longitude: { type: Number },
+    latitude: { type: Number },
 }, {
     timestamps: true
 });
