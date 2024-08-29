@@ -70,3 +70,10 @@ video{
     display: flex;
     justify-content: center;
 } */ 
+
+.navbar-logo{
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    width: 10%;
+}

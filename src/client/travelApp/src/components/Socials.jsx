@@ -5,7 +5,7 @@ import React from "react";
 import Google from "../assets/google.svg";
 import Twitter from "../assets/twitter.svg";
 import Apple from "../assets/apple.svg";
-import Logo from "../assets/logo.PNG";
+import Logo from "../assets/newLogo.png";
 
 const Socials = () => {
     return (
