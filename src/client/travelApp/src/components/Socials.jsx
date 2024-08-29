@@ -1,18 +1,24 @@
 //modules
 import React from "react";
 
+//components
+import HeaderText from "./HeaderText";
+import SubHeaderText from "./SubHeaderText";
+import Divider from "./Divider";
+
 //images
 import Google from "../assets/google.svg";
 import Twitter from "../assets/twitter.svg";
 import Apple from "../assets/apple.svg";
 import Logo from "../assets/newLogo.png";
 
-const Socials = () => {
+const Socials = ({ headerText, subHeaderText }) => {
     return (
-      <div>
-            <img src={Logo} alt="Logo" />
-            <h2 className="my-5 is-size-5">Welcome Back!</h2>
-            <h3>Please enter your details to sign in.</h3>
+      <div class="social-div">
+            <img class="logo-image" src={Logo} alt="Logo" />
+            <HeaderText text={headerText} />
+            <SubHeaderText text={subHeaderText} />
+            <Divider />
             <div class="socials-parent">
               <div className="columns socials">
                 <div className="column signin">

@@ -1,10 +1,8 @@
-//modules
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useGlobalStore } from './store.js';
-import { apiUrl } from './config.js';
-
-//components
+// modules
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import gsap from "gsap";
+import { CSSTransition } from "react-transition-group";
 import VideoPlayer from "./components/VideoPlayer.jsx";
 import Socials from "./components/Socials.jsx";
 import EmailField from "./components/EmailField.jsx";
@@ -13,91 +11,108 @@ import SubmitButton from "./components/SubmitButton.jsx";
 import ErrorField from "./components/ErrorField.jsx";
 
 const Login = () => {
-    //instances
-    const navigate = useNavigate();  
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [showRegister, setShowRegister] = useState(false);
 
-    //local state get/set
-    const [email, setEmail] = useState("");               //user input - email
-    const [password, setPassword] = useState("");         //user input - password
-    const [error, setError] = useState("");               //stored current error
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    //global state
-    const setUser = useGlobalStore((state) => state.setUserSession);                        //setUserSession function
-    const fetchUserItineraries = useGlobalStore((state) => state.fetchUserItineraries);     //fetchUserItineraries function
-    const fetchDestinations = useGlobalStore((state) => state.fetchDestinations);           //fetchDestinations function
-
-    /* 
-        Handles form submission.
-        Takes the user input (email/password) and sends it 
-          in the body via a POST request to the login API.
-        The API responds and if a match is found the setUser
-          function in the global state updates the user
-          information.
-        The API returns a session_id (JWT Auth Token) and this
-          is stored also via the setUser function.
-    */
-    const handleSubmit = async (e) => 
-    {
-      e.preventDefault();
-  
-      //validation
-      if (!email || !password) 
-      {
-        setError('Please fill in both fields');
-        return;
-      }
-  
-      try 
-      {
-        const response = await fetch(`${apiUrl}/login`, 
-        {
-          method: 'POST',
-          headers: 
-          {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password }),
-        });
-  
-        if (!response.ok) 
-        {
-          throw new Error('invalid username of password');
+        if (!email || !password) {
+            setError('Please fill in both fields');
+            return;
         }
-  
-        const { token, user } = await response.json();
-        setUser(token, user);
 
-        //loads the current user's itineraries to global state
-        //loads all destinations offered by the app to global state
-        await fetchUserItineraries();
-        await fetchDestinations();
-        navigate('/trips');
-  
-      } 
-      catch (err) 
-      {
-        setError('site could not be reached');
-        console.error('Login error:', err);
-      }
+        try {
+            const response = await fetch(`${apiUrl}/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Invalid username or password');
+            }
+
+            const { token, user } = await response.json();
+            setUser(token, user);
+            await fetchUserItineraries();
+            await fetchDestinations();
+            navigate('/trips');
+        } catch (err) {
+            setError('Site could not be reached');
+            console.error('Login error:', err);
+        }
     };
-    
+
+    const handleAnimation = (e) => {
+        e.preventDefault();
+        setShowRegister(true);
+    };
+
+    const loginColumnRef = useRef(null);
+    const registerColumnRef = useRef(null);
+
+    useEffect(() => {
+        if (showRegister) {
+            gsap.to(loginColumnRef.current, {
+                xPercent: 100,
+                duration: 1,
+                ease: "power2.inOut",
+            });
+            gsap.to(registerColumnRef.current, {
+                xPercent: -100,
+                duration: 1,
+                ease: "power2.inOut",
+                onComplete: () => navigate('/register'),
+            });
+        }
+    }, [showRegister]);
+
     return (
         <div className="columns">
-          <div className="column">
-            <VideoPlayer />
-          </div>
-          <div className="column">
-            <Socials />
-            <form onSubmit={handleSubmit}>
-              <EmailField email={email} setEmail={setEmail} />
-              <PasswordField password={password} setPassword={setPassword} />
-              <ErrorField error={error} />
-              <SubmitButton buttonText={ "Sign In" } />
-              <p> Don't have an account yet? <Link to="/register">Sign Up</Link></p>
-            </form>
-          </div>
+            <CSSTransition
+                in={!showRegister}
+                timeout={4000}
+                classNames="fade"
+                unmountOnExit
+            >
+                <div className="column login-column-1" ref={loginColumnRef}>
+                    <div className="video-parent">
+                        <VideoPlayer />
+                    </div>
+                </div>
+            </CSSTransition>
+
+            <CSSTransition
+                in={!showRegister}
+                timeout={4000}
+                classNames="fade"
+                unmountOnExit
+            >
+                <div className="column login-column-2" ref={registerColumnRef}>
+                    <div className="login-right-side-parent">
+                        <Socials headerText={"WELCOME BACK!"} subHeaderText={"Please enter your details to sign in."} />
+                        <form onSubmit={handleSubmit}>
+                            <div className="input-container-parent">
+                                <div className="input-container">
+                                    <p>E-mail Address</p>
+                                    <EmailField email={email} setEmail={setEmail} />
+                                    <p>Password</p>
+                                    <PasswordField password={password} setPassword={setPassword} />
+                                    <ErrorField error={error} />
+                                </div>
+                            </div>
+                            <SubmitButton buttonText={"Sign In"} />
+                            <p>Don't have an account yet? <a href="#" onClick={handleAnimation}>Sign Up</a></p>
+                        </form>
+                    </div>
+                </div>
+            </CSSTransition>
         </div>
-     )
-  };
-  
+    );
+};
+
 export default Login;
