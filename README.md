@@ -32,13 +32,37 @@ The TravelMate Itinerary Builder addresses these issues by providing a streamlin
 
 ### ${\textsf{\color{lightblue}TECH STACK}}$
 
-- **Front-End**: React.js (for future implementation)
+- **Front-End**: React.js, Bulma, GSAP, Leaflet, React-Leaflet, React-Router-Dom, React-Transition-Group, Zustand
 - **Back-End**: Node.js, Express.js
 - **Database**: MongoDB, Mongoose
 - **Authentication**: JSON Web Tokens (JWT)
 - **Environment Management**: dotenv
+- **File Uploads**: Multer
 - **Testing**: Jest, Supertest
 - **Version Control**: Git
+- **Build Tool**: Vite
+- **Linting**: ESLint
+
+### Backend Dependencies
+
+- **Express.js** - For building the backend API and handling routing.
+- **Mongoose** - For interacting with MongoDB, defining schemas, and managing database operations.
+- **dotenv** - For loading environment variables from a `.env` file.
+- **bcrypt** - For hashing passwords during user authentication.
+- **jsonwebtoken** - For generating and verifying JSON Web Tokens (JWT) for user authentication.
+- **cors** - For handling Cross-Origin Resource Sharing (CORS) in your Express app.
+- **Jest** - For writing and running tests.
+- **Supertest** - For testing HTTP requests in your backend API.
+
+### Frontend Dependencies
+
+- **React.js** - For building the frontend user interface.
+- **React Router** - For managing routing within the React app.
+
+### Testing Dependencies
+
+- **Jest** - Used for unit and integration testing on both the frontend and backend.
+- **Supertest** - Used for making HTTP assertions and testing your API.
 
 ## ${\textsf{\color{lightgreen}DIAGRAMS}}$
 
@@ -211,6 +235,7 @@ A user who values simplicity and aesthetics wants the app to have a clean and in
 ## ${\textsf{\color{lightblue}Project Management Process Overview}}$
 
 ### ${\textsf{\color{pink}Methodology: Agile (Scrum)}}$
+
 Our team is using the Agile (Scrum) methodology to manage the TravelMate Itinerary Builder project. This approach allows us to be flexible and adaptive to changes while ensuring that we deliver value incrementally throughout the project lifecycle (Atlassian, 2024). Key aspects of our project management process include:
 
 1. **Sprint Planning:**
@@ -257,19 +282,105 @@ To demonstrate our commitment to Agile (Scrum) practices, we have also documente
 
 Our project management process is designed to ensure that we deliver high-quality work in a structured and efficient manner. By utilizing Agile (Scrum) practices and assigning tasks based on team members' strengths, we are confident in our ability to meet the project's goals and deliver a successful TravelMate Itinerary Builder application.
 
+### ${\textsf{\color{pink}Client Testing Evidence}}$
+
+## Overview
+
+Throughout the development process, we adhered to a Continuous Integration/Continuous Deployment (CI/CD) policy, ensuring that each feature was thoroughly tested before deployment. Below is the evidence of client testing, including screenshots and explanations of how features were tested on the deployed site.
+
+## User Authentication Testing
+
+**Feature:** User Registration and Login  
+**Test Objective:** Ensure that users can register and log in successfully.
+
+**Testing Steps:**
+
+1. Navigated to the registration page.
+2. Filled in the registration form with test data.
+3. Submitted the form and verified that the user was redirected to the login page.
+4. Logged in with the newly created account.
+
+**Screenshots:**
+
+- Screenshot 1: Completed registration form
+- Screenshot 2: User redirected to the login page
+- Screenshot 3: Logged-in user's dashboard
+
+**Results:** Successful registration and login. No issues encountered.
+
+## Itinerary Creation Testing
+
+**Feature:** Creating a New Itinerary  
+**Test Objective:** Ensure that users can create and save a new itinerary.
+
+**Testing Steps:**
+
+1. Logged in as a test user.
+2. Navigated to the "Create New Itinerary" page.
+3. Entered itinerary details, including destinations and activities.
+4. Saved the itinerary and verified that it appeared in the user's dashboard.
+
+**Screenshots:**
+
+- Screenshot 1: Filled-out itinerary creation form
+- Screenshot 2: Itinerary listed in the user's dashboard
+
+**Results:** The itinerary was successfully created and displayed on the dashboard.
+
+## Destination Management Testing
+
+**Feature:** Management of Destinations  
+**Test Objective:** Ensure that users can effectively create, update, and delete destinations.
+
+**Testing Steps:**
+
+1. Logged in as a test user.
+2. Created a new destination and verified that it appeared in the list of destinations.
+3. Updated the newly created destination and checked that the changes were saved.
+4. Deleted the destination and confirmed that it was removed from the list.
+
+**Screenshots:**
+
+- Screenshot 1: Interface showing destination creation
+- Screenshot 2: Updated destination details
+- Screenshot 3: Confirmation of destination deletion
+
+**Results:** All destination management functions worked as expected.
+
+## Responsive Design Testing
+
+**Feature:** Mobile and Tablet Responsiveness  
+**Test Objective:** Ensure that the site is fully responsive on various devices.
+
+**Testing Steps:**
+
+1. Accessed the deployed site on different devices (e.g., mobile, tablet, desktop).
+2. Verified that the layout adjusted correctly for each device.
+3. Ensured that all features remained functional on smaller screens.
+
+**Screenshots:**
+
+- Screenshot 1: Mobile view of the dashboard
+- Screenshot 2: Tablet view of the itinerary creation page
+
+**Results:** The site is fully responsive, with no layout issues on different devices.
+
+## Conclusion
+
+By following CI/CD practices and implementing automated testing (using Jest and Supertest for both frontend and backend), we ensured that the key features of the application were rigorously tested before release. This process allowed us to deliver a reliable and functional product, providing a seamless user experience across all platforms.
 
 ## ${\textsf{\color{lightgreen}REFERENCES}}$
 
-Atlassian 2024, *What is the Agile methodology*, viewed 13 August 2024, https://www.atlassian.com/agile
+Atlassian 2024, *What is the Agile methodology*, viewed 13 August 2024, <https://www.atlassian.com/agile>
 
-American Express 2024, *2024 Global Travel Trends Report*, viewed 12 August 2024, https://www.americanexpress.com/en-us/travel/discover/get-inspired/global-travel-trends
+American Express 2024, *2024 Global Travel Trends Report*, viewed 12 August 2024, <https://www.americanexpress.com/en-us/travel/discover/get-inspired/global-travel-trends>
 
-Geertsm, W, Borko, S, Arora, V, Agarwal, P & Zanpure, S, *The State of the Travel Agency Sector 2023*, Skift, viewed 12 August 2024, https://research.skift.com/report/state-of-travel-2023/
+Geertsm, W, Borko, S, Arora, V, Agarwal, P & Zanpure, S, *The State of the Travel Agency Sector 2023*, Skift, viewed 12 August 2024, <https://research.skift.com/report/state-of-travel-2023/>
 
-Global Business Travel Association (GBTA), 2023, *2023 Business Travel Outlook*, GBTA, viewed 12 August 2024, https://www.gbta.org/wp-content/uploads/GBTA-2023-BTI-Full-Report_FINAL.
+Global Business Travel Association (GBTA), 2023, *2023 Business Travel Outlook*, GBTA, viewed 12 August 2024, <https://www.gbta.org/wp-content/uploads/GBTA-2023-BTI-Full-Report_FINAL>.
 
-LucidChart 2024, *What is a Data Flow Diagram*, viewed 11 August 2024, https://www.lucidchart.com/pages/data-flow-diagram
+LucidChart 2024, *What is a Data Flow Diagram*, viewed 11 August 2024, <https://www.lucidchart.com/pages/data-flow-diagram>
 
-LucidChart 2024. *How to draw 5 types of architectural diagrams*, viewed 11 August, https://www.lucidchart.com/blog/how-to-draw-architectural-diagrams
+LucidChart 2024. *How to draw 5 types of architectural diagrams*, viewed 11 August, <https://www.lucidchart.com/blog/how-to-draw-architectural-diagrams>
 
-Yee, L, Chui, M & Roberts, R, 2024, *McKinsey Technology Trends Outlook 2024*, McKinsey Digital, 16 July, viewed 12 August 2024, https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-top-trends-in-tech
+Yee, L, Chui, M & Roberts, R, 2024, *McKinsey Technology Trends Outlook 2024*, McKinsey Digital, 16 July, viewed 12 August 2024, <https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-top-trends-in-tech>
