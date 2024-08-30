@@ -3,6 +3,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { CSSTransition } from "react-transition-group";
+import { useGlobalStore } from "./store.js";
+
+//components
 import VideoPlayer from "./components/VideoPlayer.jsx";
 import Socials from "./components/Socials.jsx";
 import EmailField from "./components/EmailField.jsx";
@@ -12,14 +15,27 @@ import ErrorField from "./components/ErrorField.jsx";
 import { FirstNameField, LastNameField } from "./components/NameField.jsx";
 
 const Register = () => {
+    //instances
     const navigate = useNavigate();
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const [showLogin, setShowLogin] = useState(false);
 
+    //locat state get/set
+    const [firstName, setFirstName] = useState("");                                        //user input - first name
+    const [lastName, setLastName] = useState("");                                          //user input - last name
+    const [email, setEmail] = useState("");                                                //user input - email
+    const [password, setPassword] = useState("");                                          //user input - password
+    const [animationState, runAnimation] = useState(false);                                //animation state boolean
+    const [error, setError] = useState("");                                                //current stored error
+
+    //global state
+    const fetchUserItineraries = useGlobalStore((state) => state.fetchUserItineraries);   //fetchUserItineraries function
+    const addUser = useGlobalStore((state) => state.addUser);                             //addUser function
+
+    /*
+        Handles form submission.
+        Calls addUser function in the global state
+          this function creates a new user in the database
+          and sets user global state.
+    */
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -33,39 +49,40 @@ const Register = () => {
         }
     };
 
+    /* 
+        Handles animation transition when user clicks on the 'Sign In'
+            link.
+        The animation swtiches the x position and adjusts the opacity of each
+            column.
+    */
     const handleAnimation = (e) => {
         e.preventDefault();
-        setShowLogin(true);
+        runAnimation(true);
     };
 
-    const loginColumnRef = useRef(null);
-    const registerColumnRef = useRef(null);
+    const columnTwo = useRef(null);
+    const columnOne = useRef(null);
 
     useEffect(() => {
-        if (showLogin) {
-            gsap.to(registerColumnRef.current, {
+        if (animationState) {
+            gsap.to(columnOne.current, {
                 xPercent: -100,
                 duration: 1,
                 ease: "power2.inOut",
             });
-            gsap.to(loginColumnRef.current, {
+            gsap.to(columnTwo.current, {
                 xPercent: 100,
                 duration: 1,
                 ease: "power2.inOut",
                 onComplete: () => navigate('/'),
             });
         }
-    }, [showLogin]);
+    }, [animationState]);
 
     return (
         <div className="columns">
-            <CSSTransition
-                in={!showLogin}
-                timeout={4000}
-                classNames="fade"
-                unmountOnExit
-            >
-                <div className="column login-column-2" ref={loginColumnRef}>
+            <CSSTransition in={!animationState} timeout={4000} classNames="fade" unmountOnExit>
+                <div className="column login-column-2" ref={columnTwo}>
                     <div className="register-right-side-parent">
                         <Socials headerText={"ADVENTURE AWAITS!"} subHeaderText={"Please enter your details to create an account."} />
                         <form onSubmit={handleSubmit}>
@@ -89,13 +106,8 @@ const Register = () => {
                 </div>
             </CSSTransition>
 
-            <CSSTransition
-                in={!showLogin}
-                timeout={4000}
-                classNames="fade"
-                unmountOnExit
-            >
-                <div className="column login-column-1" ref={registerColumnRef}>
+            <CSSTransition in={!animationState} timeout={4000} classNames="fade" unmountOnExit>
+                <div className="column login-column-1" ref={columnOne}>
                     <div className="video-parent">
                         <VideoPlayer />
                     </div>
