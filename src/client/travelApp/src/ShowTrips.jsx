@@ -8,6 +8,7 @@ import NavBar from "./NavBar";
 import SubmitButton from "./components/SubmitButton";
 import MainImage from "./assets/allTripsMainImage.webp";
 import TripOverview from "./components/TripOverview";
+import LargeImage from "./components/LargeImage";
 
 const ShowTrips = () => {
 
@@ -24,27 +25,41 @@ const ShowTrips = () => {
         <>     
             <NavBar />
             <div className="columns">
-                <div className="column">
-                    <h2>Your Itineraries</h2>
-                    {/* If allTrips is not empty */}
-                    {Object.keys(allTrips).length > 0 ? 
-                    (
-                        //For each itinerary in allTrips
-                        Object.keys(allTrips).map((id) => 
+                <div className="column all-trips-left-spacing">
+                    <div className="all-trips-left-container">
+                        <h2>Your Itineraries</h2>
+                        {/* If allTrips is not empty */}
+                        {Object.keys(allTrips).length > 0 ? 
                         (
-                            //Display the itinerary
-                            <TripOverview key={id} trip={allTrips[id]} />
-                        ))
-                    ) : 
-                    (
-                        <p>No trips available</p>
-                    )}
+                            //For each itinerary in allTrips
+                            Object.keys(allTrips).map((id) => 
+                            (
+                                //Display the itinerary
+                                <TripOverview key={id} trip={allTrips[id]} />
+                            ))
+                        ) : 
+                        (
+                            <>
+                                <p>You have not made an intinerary</p>
+                                <div className="all-trips-right-spacing">
+                                    <h2>LET'S GO PLACES!</h2>
+                                    <p>Time to plan your next trip...</p>
+                                    <Link to="/create"><SubmitButton buttonText={"Create an itinerary!"}/></Link>
+                                </div>
+                            </>
+                            
+                        )}
+                    </div>
                 </div>
                 <div className="column">
-                    <h2>LET'S GO PLACES!</h2>
-                    <h2>Time to plan your next trip...</h2>
-                    <Link to="/create"><SubmitButton buttonText={"Create an itinerary!"}/></Link>
-                    <img src={MainImage}></img>
+                    <div class="all-trips-right-container">
+                        <div className="all-trips-right-spacing">
+                            <h2>LET'S GO PLACES!</h2>
+                            <p>Time to plan your next trip...</p>
+                            <Link to="/create"><SubmitButton buttonText={"Create an itinerary!"}/></Link>
+                        </div>
+                        <LargeImage image={MainImage}/>
+                    </div>
                 </div>
             </div>
         </>

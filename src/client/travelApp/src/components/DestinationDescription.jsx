@@ -14,12 +14,12 @@ const DestinationDescription = ({ destination }) => {
       (
         <>
           <DisplayImage data={destination.data} />
-          <p>{destination.description}</p>
+          <p class="destination-description-text">{destination.description}</p>
         </>
       ) 
       : 
       (
-        <p>Please select a destination</p>
+        <p class="destination-description-text">Select a destination from the itinerary</p>
       )}
     </>
   );

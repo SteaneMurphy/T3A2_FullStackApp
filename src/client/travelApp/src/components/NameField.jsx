@@ -45,7 +45,7 @@ const LastNameField = ({ name, setLastName }) => {
 const TripNameField = ({ name, setTripName }) => {
     return (
         <>
-            <div className="field">
+            <div className="field create-trip-field">
                 <p>
                 <input
                     className="input"
@@ -65,7 +65,7 @@ const TripNameField = ({ name, setTripName }) => {
 const CountrySelectField = ({ input, setInput }) => {
     return (
         <>
-            <div className="field">
+            <div className="field create-trip-field">
                 <p>
                 <input
                     className="input"

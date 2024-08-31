@@ -26,9 +26,9 @@ const TripOverview = ({ trip }) =>
                 <div className="column">
                     <DisplayImage data={data} />
                 </div>
-                <div className="column">
-                    <h2>{title}</h2>
-                    <p>{notes}</p>
+                <div className="column" id="trip-overview-text">
+                    <h2 class="destination-name">{title}</h2>
+                    <p class="destination-name">{notes}</p>
                 </div>
             </div>
         </div>

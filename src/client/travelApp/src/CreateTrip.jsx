@@ -12,6 +12,9 @@ import ResultsBox from "./components/ResultsBox";
 import MainImage from "./assets/createTripMainImage.webp";
 import SecondImage from "./assets/createTripSecondImage.webp";
 import SubmitButton from "./components/SubmitButton";
+import LargeImage from "./components/LargeImage.jsx";
+import LargeImageSecondary from "./components/LargeImageSecondary.jsx";
+import NewItineraryBox from "./components/NewItineraryBox.jsx";
 
 //temp country list - to add to database or backend
 const countryList = [
@@ -173,31 +176,37 @@ const CreateTrip = () => {
             <div className="columns">
 
                     {/* Country/destination select filter - Left side */}
-                    <div className="column">
-                        <h2>WHERE TO?</h2>
-                        <p>Itinerary Name</p>
-                        <TripNameField name={tripName} setTripName={setTripName} />
-                        <p>Country</p>
-                        <CountrySelectField input={countryInput} setInput={setCountryInput} />
-                        <p>Destinations</p>
-                        <ResultsBox array={filteredCountries} customFunc={filterDestinationsByCountry} />
-                        <img src={MainImage}></img>
+                    <div className="column all-trips-left-spacing">
+                        <div className="create-trips-left-container">
+                            <h2>WHERE TO?</h2>
+                            <p class="create-text">Itinerary Name</p>
+                            <TripNameField name={tripName} setTripName={setTripName} />
+                            <p class="create-text">Country</p>
+                            <CountrySelectField input={countryInput} setInput={setCountryInput} />
+                            <p class="create-text">Destinations</p>
+                            <ResultsBox array={filteredCountries} customFunc={filterDestinationsByCountry} />
+                            <LargeImage image={MainImage} />
+                        </div>
                     </div>
 
                     {/* List of destinations based on country filter - Middle */}
                     <div className="column">
-                        <h2>WHAT TO DO?</h2>
-                        <DestinationList destinations={filteredDestinations} onSelectDestination={handleSelectDestination} />
+                        <div className="create-trips-middle-container">
+                            <h2>WHAT TO DO?</h2>
+                            <DestinationList destinations={filteredDestinations} onSelectDestination={handleSelectDestination} />
+                        </div>
                     </div>
 
                     {/* Unsaved Itinerary - Right side */}
                     <div className="column">
-                        <form onSubmit={handleSubmit}>
-                            <img src={SecondImage}></img>
-                            <h2>{tripName ? tripName : "New Itinerary"}</h2>
-                            <DestinationList destinations={selectedDestinations} />
-                            <SubmitButton buttonText={ "Finalise Itinerary!" } />
-                        </form>
+                        <div class="create-trips-right-container">
+                            <form onSubmit={handleSubmit}>
+                                <LargeImageSecondary image={SecondImage} />
+                                <h1 class="create-trip-name">{tripName ? tripName : "New Itinerary"}</h1>
+                                <NewItineraryBox destinations={selectedDestinations} />
+                                <SubmitButton buttonText={ "Finalise Itinerary!" } />
+                            </form>
+                        </div>
                     </div>
             </div>
         </>

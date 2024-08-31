@@ -16,7 +16,7 @@ const DestinationOverview = ({ destination, onSelectDestination }) => {
                 <div className="column">
                     <DisplayImage data={destination.data} />
                 </div>
-                <div className="column">
+                <div className="column destination-overview-text">
                     <h2>{destination.name}</h2>
                 </div>
             </div>

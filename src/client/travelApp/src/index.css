@@ -1,4 +1,5 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css";
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
 
 #root {
     max-width: 1920px;
@@ -7,7 +8,9 @@
     text-align: center;
     background-color: #ffffff;
     height: 100vh;
+    font-family: "SUSE", sans-serif;
 }
+
   
 body {
 background-color: #ffffff;
@@ -28,6 +31,12 @@ h1 {
 
 .scrollable-box {
     max-height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#scrollable-box-two {
+    max-height: 30vh;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -141,6 +150,245 @@ textarea::placeholder {
   opacity: .5 !important;
 }
 
+.all-trips-right-spacing{
+    margin-top: 1rem;
+}
+
+.all-trips-left-spacing{
+    margin-top: 1rem;
+}
+
+.all-trips-left-spacing > h2{
+    margin-bottom: 1rem;
+}
+
+.all-trips-left-container{
+    background-color: #b8d8ff;
+    height: 90vh;
+    margin-left: 1em;
+    border-radius: 5px;
+    overflow: auto;
+    padding-bottom: 1em;
+}
+
+.all-trips-left-container > h2{
+    color: #3f72af;
+    font-size: 2rem;
+    text-align: start;
+    padding: 1rem 1.5rem;
+}
+
+.all-trips-left-container > p{
+    color: #3f72af;
+    font-size: 1.5rem;
+}
+
+.all-trips-right-container{
+    background-color: #b8d8ff;
+    height: 90vh;
+    margin-right: 1em;
+    border-radius: 5px;
+}
+
+.all-trips-right-spacing > h2{
+    color: #3f72af;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding-top: 1rem;
+}
+
+.all-trips-right-spacing > p{
+    color: #3f72af;
+    font-size: 1.1rem;
+}
+
+.all-trips-img{
+    margin-top: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    height: 80%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.all-trips-img > img{
+    border-radius: 15px;
+    height: 100%;
+}
+
+.create-trips-left-container{
+    background-color: #b8d8ff;
+    height: 90vh;
+    margin-left: 1em;
+    border-radius: 5px;
+    overflow: auto;
+    padding-bottom: 1em;
+}
+
+.create-trips-left-container > h2{
+    color: #3f72af;
+    font-size: 2rem;
+    padding: 1rem 1.5rem;
+}
+
+.create-trips-left-container > p{
+    color: #3f72af;
+    font-size: 1.5rem;
+}
+
+.create-text{
+    text-align: start;
+    padding-left: 1rem;
+}
+
+.create-trip-field{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.create-trip-results-text{
+    color: #3f72af;
+    font-size: large;
+}
+
+#create-trip-results{
+    background-color: #b8d8ff;
+}
+
+.create-trips-right-container{
+    background-color: #b8d8ff;
+    height: 90vh;
+    margin-right: 1em;
+    border-radius: 5px;
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+.create-trips-right-spacing > h2{
+    color: #3f72af;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding-top: 1rem;
+}
+
+.create-trips-right-spacing > p{
+    color: #3f72af;
+    font-size: 1.1rem;
+}
+
+.create-trips-img{
+    margin-top: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.create-trips-img > img{
+    border-radius: 15px;
+}
+
+.create-trips-middle-container{
+    background-color: #b8d8ff;
+    height: 90vh;
+    border-radius: 5px;
+    overflow: auto;
+    padding-bottom: 1em;
+    margin-top: 1rem;
+}
+
+.create-trips-middle-container > h2{
+    color: #3f72af;
+    font-size: 2rem;
+    padding: 1rem 1.5rem;
+}
+
+#destination-overview{
+    background-color: #b8d8ff;
+}
+
+.destination-overview-text > h2{
+    color: #3f72af;
+    font-size: large;
+}
+
+.create-trip-name{
+    color: #3f72af;
+}
+
+.destination-list-text{
+    color: #3f72af;
+    font-size: large;
+}
+
+#travel-map-container{
+    margin-top: 1rem;
+    margin-right: 2rem;
+    background-color: #b8d8ff;
+    border-radius: 5px;
+}
+
+#single-trip-middle{
+    margin-top: 1rem;
+    margin-right: 2rem;
+    background-color: #4f83d1;
+    border-radius: 5px;
+}
+
+#single-trip-left{
+    margin-top: 1rem;
+}
+
+#single-trip-middle > h1{
+    color: #b8d8ff;
+}
+
+.single-trip-heading{
+    color: #3f72af;
+    text-align: start;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+.destination-description-text{
+    color: #3f72af;
+    font-size: large;
+}
+
+#trip-overview-text > h2{
+    color: #3f72af;
+    font-size: large;
+}
+
+#trip-overview-text > p{
+    color: #b8d8ff;
+    font-size: large;
+}
+
+/* Box/Tiles */
+.box{
+    background-color: #60A8FF;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 5;
+}
+
+.destination-name{
+    color: #3f72af;
+}
+/* Box/Tiles */
+
+/* Navbar */
+.custom-navbar{
+    background-color: #b8d8ff;
+}
+.navbar-item{
+    color: #4f83d1;
+}
+.custom-link:hover{
+    color: #ffffff;
+}
+/* Navbar */
+
+/* Login/Registration OR divider */
 .divider-parent{
     display: flex;
     flex-wrap: nowrap;  
@@ -168,7 +416,9 @@ margin-right: .25em;
 .separator:not(:empty)::after {
 margin-left: .25em;
 }
+/* Login/Registration OR divider */
 
+/* Front Page Transition */
 .fade-enter {
     opacity: 0;
 }
@@ -186,3 +436,4 @@ opacity: 1;
 opacity: 0;
 transition: opacity 800ms;
 }
+/* Front Page Transition */

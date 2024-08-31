@@ -10,7 +10,7 @@ const DestinationList = ({ destinations = [], onSelectDestination }) => {
         instantiate a new DestinationOverview component
     */
     return (
-        <div className="box scrollable-box" id="destination-overview">
+        <div className="box" id="scrollable-box-two">
             {destinations.length > 0 ? 
             (
                 destinations.map((destination) => 

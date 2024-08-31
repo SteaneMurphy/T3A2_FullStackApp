@@ -50,18 +50,17 @@ const SingleTrip = () => {
   return (
     <>
       <NavBar />
+      <h1 class="single-trip-heading">{currentItinerary.title}</h1>
       <div className="columns">
-        <div className="column">
-          <h2>{currentItinerary.title}</h2>
+        <div className="column" id="single-trip-left">
           <DestinationList destinations={displayDestinations} onSelectDestination={handleSelectDestination} />
         </div>
-        <div className="column">
-          <h2>Destination Details</h2>
+        <div className="column" id="single-trip-middle">
+          <h1>Destination Details</h1>
           <DestinationDescription destination={selectedDestination} />
         </div>
-        <div className="column">
-          <TravelMap locations={displayDestinations} />
-          <SubmitButton buttonText={"Edit Itinerary!"} />
+        <div className="column" id="travel-map-container">
+            <TravelMap locations={displayDestinations} />
         </div>
       </div>
     </>
