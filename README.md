@@ -4,9 +4,15 @@
 
 [Link To GitHub Repository](https://github.com/SteaneMurphy/T3A2_FullStackApp)
 
-Link To Deployed Site: <http://mytravel-mate.netlify.app>
-
 Clone (HTTPS): <https://github.com/SteaneMurphy/T3A2_FullStackApp.git>
+
+Link To Deployed Site: <https://mytravel-mate.netlify.app>
+
+### **Please note: the version of MongoDB Atlas takes upto 60 seconds to spin up. When making a login or registration request, it may fail as the server is not avaiable. Once making a request, waiting 60 seconds, reloading the page and trying again should work. This applies to both development and production environments**
+
+### **Currently only FRANCE and USA as destinations are available**
+
+Run Locally: [How to install and run this project locally](#installation)
 
 ## ${\textsf{\color{lightgreen}PROJECT DESCRIPTION}}$
 
@@ -299,14 +305,17 @@ Throughout the development process, we adhered to a Continuous Integration/Conti
 
 1. Navigated to the registration page.
 2. Filled in the registration form with test data.
-3. Submitted the form and verified that the user was redirected to the login page.
-4. Logged in with the newly created account.
+3. Submitted the form and verified that the user was redirected to the home page.
 
 **Screenshots:**
 
 - Screenshot 1: Completed registration form
-- Screenshot 2: User redirected to the login page
-- Screenshot 3: Logged-in user's dashboard
+
+![image](./docs/CICD/CompletedReg.PNG)
+
+- Screenshot 2: User redirected to the home page
+
+![image](./docs/CICD/HomePageReg.PNG)
 
 **Results:** Successful registration and login. No issues encountered.
 
@@ -325,7 +334,12 @@ Throughout the development process, we adhered to a Continuous Integration/Conti
 **Screenshots:**
 
 - Screenshot 1: Filled-out itinerary creation form
+
+![image](./docs/CICD/CreateNewItinerary.PNG)
+
 - Screenshot 2: Itinerary listed in the user's dashboard
+
+![image](./docs/CICD/CreateNewItineraryAfter.PNG)
 
 **Results:** The itinerary was successfully created and displayed on the dashboard.
 
@@ -343,9 +357,21 @@ Throughout the development process, we adhered to a Continuous Integration/Conti
 
 **Screenshots:**
 
-- Screenshot 1: Interface showing destination creation
-- Screenshot 2: Updated destination details
-- Screenshot 3: Confirmation of destination deletion
+- Screenshot 1: Logged in as test user
+
+![image](./docs/CICD/BackendLogin.PNG)
+
+- Screenshot 2: Interface showing destination creation
+
+![image](./docs/CICD/BackendDestinationCreate.PNG)
+
+- Screenshot 3: Updated destination details
+
+![image](./docs/CICD/BackendDestinationUpdate.PNG)
+
+- Screenshot 4: Confirmation of destination deletion
+
+![image](./docs/CICD/BackendDestinationDelete.PNG)
 
 **Results:** All destination management functions worked as expected.
 
@@ -363,13 +389,98 @@ Throughout the development process, we adhered to a Continuous Integration/Conti
 **Screenshots:**
 
 - Screenshot 1: Mobile view of the dashboard
+
+![image](./docs/CICD/MobileView.PNG)
+
 - Screenshot 2: Tablet view of the itinerary creation page
+
+![image](./docs/CICD/TabletView.PNG)
 
 **Results:** The site is fully responsive, with no layout issues on different devices.
 
 ## Conclusion
 
 By following CI/CD practices and implementing automated testing (using Jest and Supertest for both frontend and backend), we ensured that the key features of the application were rigorously tested before release. This process allowed us to deliver a reliable and functional product, providing a seamless user experience across all platforms.
+
+# INSTALLATION
+
+This project has a combined frontend and backend. Once the repository has been cloned into a new directory, installation steps must be undertaken in two different sub-directories.
+
+Install NVM package manager if you do not already have it installed:
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+```
+
+Please ensure you have installed Node.js in your environment:
+
+```bash
+nvm install node
+```
+
+## FRONTEND
+
+Navigate to:
+
+```bash
+cd src/client/travelApp
+```
+
+Once in the main directory for the Vite/React application, dependencies must be installed using:
+
+```bash
+npm install
+```
+
+Inside this sub-directory is a '.env.development.sample' file and a '.env.production.sample' file. To run a local version of this application, make a copy of the '.env.development.sample' file and name it '.env.development'. In this file is a string called VITE_API_URL. Set this string to the local URL: 'http://localhost:4000' as this is the port that express will use.
+
+## BACKEND
+
+Navigate to:
+
+```bash
+cd src/server
+```
+
+Once in the main directory for the Express.js application, dependencies must be installed using:
+
+```bash
+npm install
+```
+
+Inside this sub-directory is a '.env.sample' file. Please make a new file named '.env' and copy the contents of '.env.sample' to the new '.env' file. This file will have two variables "DB_URI" and "JWT_SECRET" that need to be manually set. As this is a public repo, the strings for these two variables have been provided to you (lecturer) in the assessment notes.
+
+## RUNNING THE APPLICATION
+
+Both the local express server and the local react server need to run simultaneously. To run the server, first navigate to the correct directory:
+
+```bash
+cd src/server
+```
+
+Then initialise the seed file:
+
+```bash
+node seed.js
+```
+
+Then run the server:
+
+```bash
+node index.js
+```
+
+Whilst the server is running, navigate to the frontend directory:
+
+```bash
+cd src/client/travelApp
+```
+
+And run the server:
+
+```bash
+npm run dev
+```
 
 ## ${\textsf{\color{lightgreen}REFERENCES}}$
 
