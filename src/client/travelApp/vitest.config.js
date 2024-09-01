@@ -3,7 +3,7 @@ import { imagetools } from 'vite-imagetools';
 
 export default defineConfig({
   plugins: [
-    imagetools(),
+    imagetools(), // This handles the image imports
   ],
   test: {
     environment: 'jsdom',
