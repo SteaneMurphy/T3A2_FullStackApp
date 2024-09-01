@@ -1,5 +1,5 @@
 //modules
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGlobalStore } from "./store";
 
@@ -21,6 +21,16 @@ const ShowTrips = () => {
     */
     const allTrips = useGlobalStore((state) => state.itineraries);
 
+    useEffect(() => {
+        if (Object.keys(allTrips).length === 0) {
+          // Perform some action if no trips are available, or just log the change
+          console.log("No itineraries found or allTrips just updated.");
+        } else {
+          console.log("Trips updated:", allTrips);
+          // You could also trigger some side effect here if needed
+        }
+      }, [allTrips]); // Dependency array with allTrips
+
     return (
         <>     
             <NavBar />
@@ -40,7 +50,7 @@ const ShowTrips = () => {
                         ) : 
                         (
                             <>
-                                <p>You have not made an intinerary</p>
+                                <p>You have not made an itinerary</p>
                                 <div className="all-trips-right-spacing">
                                     <h2>LET'S GO PLACES!</h2>
                                     <p>Time to plan your next trip...</p>

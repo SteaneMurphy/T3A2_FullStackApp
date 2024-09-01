@@ -25,6 +25,7 @@ const Login = () => {
     const [error, setError] = useState("");                                                 //current stored error
 
     //global state
+    const clearUser = useGlobalStore((state) => state.clearUserSession)
     const setUser = useGlobalStore((state) => state.setUserSession);                        //setUserSession function
     const fetchUserItineraries = useGlobalStore((state) => state.fetchUserItineraries);     //fetchUserItineraries function
     const fetchDestinations = useGlobalStore((state) => state.fetchDestinations);           //fetchDestinations function

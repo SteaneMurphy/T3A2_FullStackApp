@@ -105,8 +105,8 @@ const useGlobalStore = create((set) =>
 
       if (response.ok) 
       {
-        const { token, user } = await response.json();
-        useGlobalStore.getState().setUserSession(token, user);
+        const { token, newUser } = await response.json();
+        useGlobalStore.getState().setUserSession(token, newUser);
       } 
       else 
       {
